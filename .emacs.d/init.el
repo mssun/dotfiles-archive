@@ -27,10 +27,11 @@
     init-org
     init-auctex
     init-yasnippet
-    init-auto-complete
+    ;init-auto-complete
     init-ido
     init-helm
     init-org
+    init-company
     )
   "Set of modules enable in dotemacs."
   :group 'dotemacs)
