@@ -1,0 +1,5 @@
+.DS_store
+.emacs.d/.cache
+.emacs.d/ac-comphist.dat
+.emacs.d/elpa
+.emacs.d/recentf
