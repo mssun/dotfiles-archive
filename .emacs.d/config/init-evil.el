@@ -1,5 +1,5 @@
 (require-package 'evil)
+(setq evil-want-C-u-scroll t)
 (require 'evil)
-(setq evil-want-C-u-scroll)
 (evil-mode t)
 (provide 'init-evil)
