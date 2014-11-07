@@ -5,5 +5,6 @@
 	  "e" 'find-file
 	  "b" 'switch-to-buffer
 	  "k" 'kill-buffer
-	  "w" 'save-buffer
-	  "b d" 'kill-this-buffer)))
+	  "w" 'save-buffer)))
+
+(provide 'init-bindings)

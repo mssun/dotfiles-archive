@@ -34,6 +34,7 @@
     init-autopair
     init-markdown
     init-projectile
+    init-bindings
     )
   "Set of modules enable in dotemacs."
   :group 'dotemacs)
