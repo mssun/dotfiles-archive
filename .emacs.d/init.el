@@ -32,6 +32,7 @@
     init-helm
     init-org
     init-company
+    init-autopair
     )
   "Set of modules enable in dotemacs."
   :group 'dotemacs)
