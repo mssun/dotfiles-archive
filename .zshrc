@@ -63,7 +63,7 @@ export LANG=en_US.UTF-8
 # else
 #   export EDITOR='mvim'
 # fi
-export EDITOR='vim'
+export EDITOR='emacs'
 
 
 # Compilation flags
