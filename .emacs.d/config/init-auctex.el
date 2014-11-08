@@ -5,6 +5,8 @@
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq reftex-plug-into-AUCTeX t)
 (setq TeX-PDF-mode t)
+(setq LaTeX-item-indent 0)
+(setq TeX-newline-function 'newline-and-indent)
 
 (dolist (hook '(LaTeX-mode-hook))
   (add-hook hook (lambda ()

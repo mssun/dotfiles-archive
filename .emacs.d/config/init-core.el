@@ -16,6 +16,9 @@
 (blink-cursor-mode -1)
 (setq mac-right-command-modifier 'meta)
 
+(electric-indent-mode t)
+(setq-default indent-tabs-mode nil)
+
 ;; store most files in the cache
 (setq backup-directory-alist
       `((".*" . ,(concat dotemacs-cache-directory "backups")))
