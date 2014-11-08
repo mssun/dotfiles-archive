@@ -7,6 +7,7 @@
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-echo-area-message t)
 (setq inhibit-startup-message t)
+(menu-bar-mode -1)
 
 (setq initial-scratch-message nil)
 
