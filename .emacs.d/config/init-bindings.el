@@ -14,9 +14,6 @@
 	  "b" 'switch-to-buffer
 	  "k" 'kill-buffer
 	  "w" 'save-buffer))
-    (after "company-autoloads"
-      (define-key company-active-map (kbd "C-n") 'company-select-next)
-      (define-key company-active-map (kbd "C-p") 'company-select-previous))
 
     (global-set-key (kbd "C-w") 'evil-window-map)
     (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
@@ -25,6 +22,13 @@
     (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
     (define-key evil-normal-state-map (kbd "C-b") 'evil-scroll-up)
     (define-key evil-normal-state-map (kbd "C-f") 'evil-scroll-down)
+
+    (after "company-autoloads"
+      (define-key company-active-map (kbd "C-n") 'company-select-next)
+      (define-key company-active-map (kbd "C-p") 'company-select-previous)
+      (after "helm-company-autoloads"
+        (define-key company-mode-map (kbd "<C-return>") 'helm-company)
+        (define-key company-active-map (kbd "<C-return>") 'helm-company)))
     )
 
 (provide 'init-bindings)
