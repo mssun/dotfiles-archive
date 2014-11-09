@@ -1,4 +1,4 @@
-(setq evil-want-C-u-scroll t)
+; (setq evil-want-C-u-scroll t)
 (setq evil-search-module 'evil-search)
 (setq evil-magic 'very-magic)
 
