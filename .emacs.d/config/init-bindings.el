@@ -1,3 +1,8 @@
+(after "smex-autoloads"
+  (global-set-key (kbd "M-x") 'smex)
+  (global-set-key (kbd "C-x C-m") 'smex)
+  (global-set-key (kbd "C-c C-m") 'smex))
+
 (after 'evil
     ;; fix conflict with electric-indent-mode in 24.4
   (define-key evil-insert-state-map [remap newline] 'newline)
@@ -18,6 +23,8 @@
     (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
     (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
     (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
+    (define-key evil-normal-state-map (kbd "C-b") 'evil-scroll-up)
+    (define-key evil-normal-state-map (kbd "C-f") 'evil-scroll-down)
     )
 
 (provide 'init-bindings)
