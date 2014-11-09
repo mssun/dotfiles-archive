@@ -38,17 +38,6 @@
     (define-key evil-normal-state-map (kbd "SPC k") 'ido-kill-buffer)
     (define-key evil-normal-state-map (kbd "SPC f") 'ido-find-file)
 
-    (after "helm-autoloads"
-      (define-key evil-normal-state-map (kbd "g b") 'helm-mini)
-      (define-key evil-normal-state-map (kbd "SPC f") 'helm-find-files)
-      (define-key evil-normal-state-map (kbd "SPC o") 'helm-semantic-or-imenu)
-      (define-key evil-normal-state-map (kbd "SPC t") 'helm-etags-select)
-      (define-key evil-normal-state-map (kbd "SPC y") 'helm-show-kill-ring)
-      (define-key evil-normal-state-map (kbd "SPC m") 'helm-bookmarks)
-      (define-key evil-normal-state-map (kbd "SPC r") 'helm-register)
-      (after "helm-swoop-autoloads"
-        (define-key evil-normal-state-map (kbd "SPC l") 'helm-swoop)
-        (define-key evil-normal-state-map (kbd "SPC L") 'helm-multi-swoop)))
     )
 
 (provide 'init-bindings)
