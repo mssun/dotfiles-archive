@@ -10,10 +10,8 @@
     (after "evil-leader-autoloads"
 	(evil-leader/set-leader ",")
 	(evil-leader/set-key
-	  "e" 'find-file
-	  "b" 'switch-to-buffer
-	  "k" 'kill-buffer
-	  "w" 'save-buffer))
+          "w" 'save-buffer
+          "b d" 'kill-this-buffer))
 
     (global-set-key (kbd "C-w") 'evil-window-map)
     (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
@@ -29,6 +27,28 @@
       (after "helm-company-autoloads"
         (define-key company-mode-map (kbd "<C-return>") 'helm-company)
         (define-key company-active-map (kbd "<C-return>") 'helm-company)))
+
+    
+    (after "smex-autoloads"
+      (define-key evil-visual-state-map (kbd "SPC SPC") 'smex)
+      (define-key evil-normal-state-map (kbd "SPC SPC") 'smex))
+  
+    (define-key evil-normal-state-map (kbd "SPC o") 'imenu)
+    (define-key evil-normal-state-map (kbd "SPC b") 'switch-to-buffer)
+    (define-key evil-normal-state-map (kbd "SPC k") 'ido-kill-buffer)
+    (define-key evil-normal-state-map (kbd "SPC f") 'ido-find-file)
+
+    (after "helm-autoloads"
+      (define-key evil-normal-state-map (kbd "g b") 'helm-mini)
+      (define-key evil-normal-state-map (kbd "SPC f") 'helm-find-files)
+      (define-key evil-normal-state-map (kbd "SPC o") 'helm-semantic-or-imenu)
+      (define-key evil-normal-state-map (kbd "SPC t") 'helm-etags-select)
+      (define-key evil-normal-state-map (kbd "SPC y") 'helm-show-kill-ring)
+      (define-key evil-normal-state-map (kbd "SPC m") 'helm-bookmarks)
+      (define-key evil-normal-state-map (kbd "SPC r") 'helm-register)
+      (after "helm-swoop-autoloads"
+        (define-key evil-normal-state-map (kbd "SPC l") 'helm-swoop)
+        (define-key evil-normal-state-map (kbd "SPC L") 'helm-multi-swoop)))
     )
 
 (provide 'init-bindings)
