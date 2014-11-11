@@ -33,6 +33,7 @@
     init-company
     init-autopair
     init-markdown
+    init-c
     init-projectile
     init-bindings
     )
