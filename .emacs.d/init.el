@@ -34,6 +34,7 @@
     init-autopair
     init-markdown
     init-c
+    init-elpy
     init-projectile
     init-bindings
     )
