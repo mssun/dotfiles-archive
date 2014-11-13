@@ -7,9 +7,13 @@
 ;       display-time-default-load-average nil)
 ; (display-time-mode t)
 
-(when (eq system-type 'darwin)
-  (set-face-attribute 'default nil :family "Monaco")
-  (set-face-attribute 'default nil :height 140)
+(if (eq system-type 'darwin)
+  (progn 
+    (set-face-attribute 'default nil :family "Monaco" :height 140)
+  )
+  (progn
+    (set-face-attribute 'default nil :family "Ubuntu Mono" :height 140)
+  )
 )
 
 (add-to-list 'default-frame-alist '(height . 24))
