@@ -1,0 +1,164 @@
+!-------------------------------------------------------------------------------
+! Xft settings
+!-------------------------------------------------------------------------------
+
+Xft.dpi:                    96
+Xft.antialias:              true
+Xft.rgba:                   rgb
+Xft.hinting:                true
+Xft.hintstyle:              hintslight
+
+!-------------------------------------------------------------------------------
+! URxvt settings
+! Colours lifted from Solarized (http://ethanschoonover.com/solarized)
+! More info at:
+! http://pod.tst.eu/http://cvs.schmorp.de/rxvt-unicode/doc/rxvt.1.pod
+!-------------------------------------------------------------------------------
+
+URxvt.depth:                32
+URxvt.geometry:             90x30
+URxvt.transparent:          false
+URxvt.fading:               0
+! URxvt.urgentOnBell:         true
+! URxvt.visualBell:           true
+URxvt.loginShell:           true
+URxvt.saveLines:            50
+URxvt.internalBorder:       3
+URxvt.lineSpace:            0
+
+! Fonts
+URxvt.allow_bold:           True
+/* URxvt.font:                 -*-terminus-medium-r-normal-*-12-120-72-72-c-60-iso8859-1 */
+URxvt*font: xft:Ubuntu Mono:size=14, xft:WenQuanYi Micro Hei Mono
+URxvt*boldFont: xft:Ubuntu Mono:bold:size=14, xft:WenQuanYi Micro Hei Mono
+
+! Fix font space
+URxvt*letterSpace: -2
+
+! Scrollbar
+URxvt.scrollStyle:          rxvt
+URxvt.scrollBar:            false
+
+! Perl extensions
+URxvt.perl-ext-common:      default,matcher
+URxvt.matcher.button:       1
+URxvt.urlLauncher:          google-chrome-stable
+
+! Cursor
+URxvt.cursorBlink:          true
+URxvt.cursorColor:          #657b83
+URxvt.cursorUnderline:      false
+
+! Pointer
+URxvt.pointerBlank:         true
+
+!!!!Source http://github.com/altercation/solarized
+!!
+!!*background: #002b36
+!!*foreground: #657b83
+!!!!*fading: 40
+!!*fadeColor: #002b36
+!!*cursorColor: #93a1a1
+!!*pointerColorBackground: #586e75
+!!*pointerColorForeground: #93a1a1
+!!
+!!!! black dark/light
+!!*color0: #073642
+!!*color8: #002b36
+!!
+!!!! red dark/light
+!!*color1: #dc322f
+!!*color9: #cb4b16
+!!
+!!!! green dark/light
+!!*color2: #859900
+!!*color10: #586e75
+!!
+!!!! yellow dark/light
+!!*color3: #b58900
+!!*color11: #657b83
+!!
+!!!! blue dark/light
+!!*color4: #268bd2
+!!*color12: #839496
+!!
+!!!! magenta dark/light
+!!*color5: #d33682
+!!*color13: #6c71c4
+!!
+!!!! cyan dark/light
+!!*color6: #2aa198
+!!*color14: #93a1a1
+!!
+!!!! white dark/light
+!!*color7: #eee8d5
+!!*color15: #fdf6e3
+
+urxvt*background:       #2d2d2d
+urxvt*foreground:       #dedede
+ 
+URxvt.saveLines:32767
+URxvt.scrollBar: false
+ 
+URxvt.perl-ext-common: default,matcher
+URxvt.urlLauncher: uzbl-browser
+URxvt.matcher.button: 2
+URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+ 
+URxvt*colorUL: #c5f779
+URxvt*underlineColor: #c5f779
+ 
+URxvt*color0:   #3f3f3f
+URxvt*color1:       #705050
+URxvt*color2:     #60b48a
+URxvt*color3:    #dfaf8f
+URxvt*color4:      #506070
+URxvt*color5:   #dc8cc3
+URxvt*color6:      #8cd0d3
+URxvt*color7:     #DCDCCC
+ 
+URxvt*color8:      #709080
+URxvt*color9:      #cc9393
+URxvt*color10:    #7f9f7f
+URxvt*color11:   #f0dfaf
+URxvt*color12:     #94bff3
+URxvt*color13:  #ec93d3
+URxvt*color14:    #93e0e3
+URxvt*color15:          #ffffff
+ 
+!black
+xterm*color0:         #353535
+xterm*color8:         #666666
+!red
+xterm*color1:         #AE4747
+xterm*color9:         #EE6363
+!green
+xterm*color2:         #556B2F
+xterm*color10:        #9ACD32
+!brown/yellow
+xterm*color3:         #DAA520
+xterm*color11:        #FFC125
+!blue
+xterm*color4:         #6F99B4
+xterm*color12:        #7C96B0
+!magenta
+xterm*color5:         #8B7B8B
+xterm*color13:        #D8BFD8
+!cyan
+xterm*color6:         #A7A15E
+xterm*color14:        #F0E68C
+!white
+xterm*color7:         #DDDDDD
+xterm*color15:        #FFFFFF
+
+URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select,fullscreen
+URxvt.url-select.launcher:  google-chrome-stable
+URxvt.url-select.underline: true
+URxvt.keysym.M-u:           perl:url-select:select_next
+! URxvt.keysym.M-Escape:      perl:keyboard-select:activate
+URxvt.keysym.M-1:           perl:keyboard-select:activate
+URxvt.keysym.M-s:           perl:keyboard-select:search
+URxvt.keysym.M-v:           perl:clipboard:paste
+URxvt.keysym.M-c:           perl:clipboard:copy
+URxvt.keysym.M-C-v:         perl:clipboard:paste_escaped
+URxvt.keysym.F11: perl:fullscreen:switch
