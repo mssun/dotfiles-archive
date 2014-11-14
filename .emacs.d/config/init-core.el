@@ -18,6 +18,10 @@
 (electric-indent-mode t)
 (setq-default indent-tabs-mode nil)
 
+;; better scrolling
+(setq scroll-conservatively 9999
+      scroll-preserve-screen-position t)
+
 ;; store most files in the cache
 (setq backup-directory-alist
       `((".*" . ,(concat dotemacs-cache-directory "backups")))
