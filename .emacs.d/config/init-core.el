@@ -30,5 +30,13 @@
       auto-save-list-file-prefix
       (concat dotemacs-cache-directory "auto-save-list/saves-"))
 
+(defun my-do-not-kill-scrach-buffer()
+  (if (member (buffer-name (current-buffer)) '("*scrach*" "*Messages*"))
+      (progn
+        (bury-buffer)
+        nil)
+    t))
+(add-hook 'kill-buffer-query-functions 'my-do-not-kill-scrach-buffer)
+
 
 (provide 'init-core)
