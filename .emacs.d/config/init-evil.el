@@ -5,6 +5,8 @@
 (require-package 'evil)
 (require 'evil)
 
+(setq evil-cross-lines t)
+
 (require-package 'evil-leader)
 (global-evil-leader-mode t)
 
