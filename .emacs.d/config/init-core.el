@@ -26,6 +26,10 @@
 ;; better scrolling
 (setq scroll-conservatively 9999
       scroll-preserve-screen-position t)
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+(setq mouse-wheel-progressive-speed nil)
+(setq mouse-wheel-follow-mouse 't)
+(setq scroll-step 1)
 
 ;; store most files in the cache
 (setq backup-directory-alist
