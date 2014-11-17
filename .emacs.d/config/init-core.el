@@ -2,6 +2,11 @@
 (unless (server-running-p)
   (server-start))
 
+;; move cursor to the last position upon open
+(require 'saveplace)
+(setq save-place-file (concat dotemacs-cache-directory "places"))
+(setq-default save-place t)
+
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (setq inhibit-splash-screen t)
