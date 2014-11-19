@@ -26,7 +26,6 @@
     init-org
     init-auctex
     init-yasnippet
-    ;init-auto-complete
     init-ido
     init-helm
     init-org
