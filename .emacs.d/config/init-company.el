@@ -11,6 +11,10 @@
         org-mode
         latex-mode
         tex-mode))
+(defun my-company-tab()
+  (interactive)
+  (when (null (yas-expand))
+    (company-select-next)))
 (global-company-mode)
 
 (provide 'init-company)
