@@ -11,6 +11,9 @@
 	(evil-leader/set-leader ",")
 	(evil-leader/set-key
           "w" 'save-buffer
+          "v" (kbd "C-w v C-w l")
+          "s" (kbd "C-w s C-w j")
+          "h h" 'help-for-help-internal
           "b d" 'kill-this-buffer))
 
     (global-set-key (kbd "C-w") 'evil-window-map)
