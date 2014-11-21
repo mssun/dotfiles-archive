@@ -24,6 +24,9 @@
     (define-key evil-normal-state-map (kbd "C-b") 'evil-scroll-up)
     (define-key evil-normal-state-map (kbd "C-f") 'evil-scroll-down)
 
+    (define-key evil-motion-state-map "j" 'evil-next-visual-line)
+    (define-key evil-motion-state-map "k" 'evil-previous-visual-line)
+
     (after "company-autoloads"
       (define-key company-active-map (kbd "C-n") 'company-select-next)
       (define-key company-active-map (kbd "C-p") 'company-select-previous)
