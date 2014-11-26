@@ -82,3 +82,4 @@ export EDITOR='emacs'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls="ls --color=auto"
 alias em="emacsclient -t"
+alias rm='echo "rm is disabled, use trash or /bin/rm instead."'
