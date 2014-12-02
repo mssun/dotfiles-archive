@@ -36,6 +36,7 @@
     init-elpy
     init-projectile
     init-bindings
+    init-flycheck
     )
   "Set of modules enable in dotemacs."
   :group 'dotemacs)
