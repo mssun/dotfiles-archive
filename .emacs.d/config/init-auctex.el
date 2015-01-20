@@ -25,6 +25,6 @@
 (setq TeX-view-program-selection '((output-pdf "PDF Viewer")))
 (setq TeX-view-program-list
   '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
-(setq font-latex-fontify-script nil)
-(setq font-latex-fontify-sectioning 'color)
+; (setq font-latex-fontify-script nil)
+; (setq font-latex-fontify-sectioning 'color)
 (provide 'init-auctex)
