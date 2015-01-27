@@ -51,7 +51,8 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:/Users/mssun/Documents/arm-eabi-4.8/bin"
+export STUDIO_JDK="/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
