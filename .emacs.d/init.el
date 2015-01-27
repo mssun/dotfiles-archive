@@ -35,8 +35,9 @@
     init-c
     init-elpy
     init-projectile
-    init-bindings
+    init-mu4e
     init-flycheck
+    init-bindings
     )
   "Set of modules enable in dotemacs."
   :group 'dotemacs)

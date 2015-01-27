@@ -47,5 +47,4 @@
     (define-key evil-normal-state-map (kbd "SPC f") 'ido-find-file)
 
     )
-
 (provide 'init-bindings)
