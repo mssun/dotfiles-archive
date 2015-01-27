@@ -9,14 +9,15 @@
 
 (if (eq system-type 'darwin)
   (progn 
-    (set-face-attribute 'default nil :family "Monaco" :height 140)
+    (set-face-attribute 'default nil 
+                        :font "Source Code Pro-16")
   )
   (progn
     (set-face-attribute 'default nil :family "Ubuntu Mono" :height 140)
   )
 )
 
-(add-to-list 'default-frame-alist '(height . 24))
+(add-to-list 'default-frame-alist '(height . 30))
 (add-to-list 'default-frame-alist '(width. 80))
 
 (provide 'init-eyecandy)
