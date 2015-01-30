@@ -1,0 +1,25 @@
+[general]
+accounts = gmail
+maxsyncaccounts = 3
+pythonfile = ~/.offlineimap.py
+
+[Account gmail]
+localrepository = gmail-local
+remoterepository = gmail-remote
+status_backend = sqlite
+
+[Repository gmail-local]
+type = Maildir
+localfolders = ~/.mail/gmail/
+nametrans = trans_local_gmail
+
+[Repository gmail-remote]
+type = Gmail
+nametrans = trans_remote_gmail
+remotehost = imap.gmail.com
+remoteusereval = get_username("gmail")
+remotepasseval = get_password("gmail")
+ssl = yes
+cert_fingerprint=d4ddbc3715ed1e919a185dd634581a05930e4d43
+maxconnections = 3
+realdelete = no
