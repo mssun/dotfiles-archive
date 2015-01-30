@@ -38,6 +38,7 @@
     init-mu4e
     init-flycheck
     init-bindings
+    init-calfw
     )
   "Set of modules enable in dotemacs."
   :group 'dotemacs)
