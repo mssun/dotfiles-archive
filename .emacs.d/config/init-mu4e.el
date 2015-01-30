@@ -56,5 +56,8 @@
       mu4e-view-image-max-width 700)
 
 (setq mu4e-html2text-command "w3m -dump -cols 110 -T text/html")
+(setq mu4e-headers-fields '((:human-date . 12)
+                            (:from-or-to . 22)
+                            (:subject    . 74)))
 
 (provide 'init-mu4e)
