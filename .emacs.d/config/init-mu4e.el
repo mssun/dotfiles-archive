@@ -1,12 +1,14 @@
 (require-package 'mu4e)
+(require-package 'mu4e-maildirs-extension)
+(mu4e-maildirs-extension)
 (require 'mu4e)
 
 ;; default
-;; (setq mu4e-maildir "~/Maildir")
+(setq mu4e-maildir "~/.mail")
 
-(setq mu4e-drafts-folder "/[Gmail].Drafts")
-(setq mu4e-sent-folder   "/[Gmail].Sent Mail")
-(setq mu4e-trash-folder  "/[Gmail].Trash")
+(setq mu4e-drafts-folder "/gmail/drafts")
+(setq mu4e-sent-folder   "/gmail/sent")
+(setq mu4e-trash-folder  "/gmail/trash")
 
 ;; don't save message to Sent Messages, Gmail/IMAP takes care of this
 (setq mu4e-sent-messages-behavior 'delete)
@@ -46,10 +48,10 @@
 ;;        "RET" 'mu4e-view-message)))
 
 (setq mu4e-maildir-shortcuts
-    '( ("/INBOX"               . ?i)
-       ("/[Gmail].Sent Mail"   . ?s)
-       ("/[Gmail].Trash"       . ?t)
-       ("/[Gmail].All Mail"    . ?a)))
+    '( ("/gmail/INBOX"  . ?i)
+       ("/gmail/sent"   . ?s)
+       ("/gmail/trash"  . ?t)
+       ("/gmail/all"    . ?a)))
 
 ;; allow for updating mail using 'U' in the main view:
 (setq mu4e-get-mail-command "offlineimap")
@@ -84,8 +86,14 @@
      smtpmail-default-smtp-server "smtp.gmail.com"
      smtpmail-smtp-server "smtp.gmail.com"
      smtpmail-smtp-service 587)
+(add-hook 'message-send-hook
+          (lambda ()
+            (unless (yes-or-no-p "Sure you want to send this?")
+              (signal 'quit nil))))
 
 ;; don't keep message buffers around
 (setq message-kill-buffer-on-exit t)
+
+(setq mu4e-hide-index-messages t)
 
 (provide 'init-mu4e)
