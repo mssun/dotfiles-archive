@@ -47,5 +47,7 @@
     t))
 (add-hook 'kill-buffer-query-functions 'my-do-not-kill-scratch-buffer)
 
+(require-package 'dash)
+(require-package 'dash-functional)
 
 (provide 'init-core)
