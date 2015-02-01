@@ -20,8 +20,8 @@
 (defcustom dotemacs-modules
   '(init-core
     init-exec-path
-    init-eyecandy
     init-theme
+    init-eyecandy
     init-evil
     init-org
     init-auctex
@@ -30,7 +30,8 @@
     init-helm
     init-org
     init-company
-    init-autopair
+    ;; init-autopair
+    init-smartparens
     init-markdown
     init-c
     init-elpy
