@@ -40,6 +40,7 @@
     init-flycheck
     init-bindings
     init-calfw
+    init-misc
     )
   "Set of modules enable in dotemacs."
   :group 'dotemacs)
