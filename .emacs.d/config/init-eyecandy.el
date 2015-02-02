@@ -45,4 +45,6 @@
 (add-to-list 'default-frame-alist '(height . 30))
 (add-to-list 'default-frame-alist '(width. 80))
 
+(require-package 'rainbow-delimiters)
+
 (provide 'init-eyecandy)
