@@ -60,4 +60,12 @@
                             (:from-or-to . 22)
                             (:subject    . 74)))
 
+;; (add-hook 'mu4e-index-updated-hook
+;;           (defun notify-on-mail ()
+;;             (start-process "terminal-notifier" nil
+;;                            "terminal-notifier"
+;;                            "-message" "M-x mu4e"
+;;                            "-title" "New mail as arrived."
+;;                            "-sound" "Pop"
+;;                            "-group" "mu4e-new-mail")))
 (provide 'init-mu4e)
