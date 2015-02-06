@@ -41,7 +41,9 @@
      smtpmail-stream-type 'starttls
      smtpmail-default-smtp-server "smtp.gmail.com"
      smtpmail-smtp-server "smtp.gmail.com"
-     smtpmail-smtp-service 587)
+     smtpmail-smtp-service 587
+     smtpmail-auth-credentials
+     (expand-file-name "~/.authinfo.gpg"))
 
 (add-hook 'message-send-hook
           (lambda ()
