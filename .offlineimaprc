@@ -20,6 +20,6 @@ remotehost = imap.gmail.com
 remoteusereval = get_username("gmail")
 remotepasseval = get_password("gmail")
 ssl = yes
-cert_fingerprint=d4ddbc3715ed1e919a185dd634581a05930e4d43
+sslcacertfile=/usr/local/opt/curl/curl-ca-bundle.crt
 maxconnections = 3
 realdelete = no
