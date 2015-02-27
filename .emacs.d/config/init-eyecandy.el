@@ -35,7 +35,7 @@
 (if (eq system-type 'darwin)
   (progn 
     (set-face-attribute 'default nil 
-                        :font "Source Code Pro-16")
+                        :font "Source Code Pro-14")
   )
   (progn
     (set-face-attribute 'default nil :family "Ubuntu Mono" :height 140)
