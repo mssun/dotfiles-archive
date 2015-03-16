@@ -29,8 +29,10 @@ URxvt.lineSpace:            0
 ! Fonts
 URxvt.allow_bold:           True
 /* URxvt.font:                 -*-terminus-medium-r-normal-*-12-120-72-72-c-60-iso8859-1 */
-URxvt*font: xft:Ubuntu Mono:size=14, xft:WenQuanYi Micro Hei Mono
-URxvt*boldFont: xft:Ubuntu Mono:bold:size=14, xft:WenQuanYi Micro Hei Mono
+/* URxvt*font: xft:Source :size=14, xft:WenQuanYi Micro Hei Mono*/
+URxvt*font: xft:Source Code Pro:size=12, xft:Souce Han Sans CN
+/* URxvt*font: xft:Source Code Pro:size=12, xft:WenQuanYi Micro Hei Mono */
+/* URxvt*boldFont: xft:Ubuntu Mono:bold:size=14, xft:WenQuanYi Micro Hei Mono */
 
 ! Fix font space
 URxvt*letterSpace: -2

@@ -38,7 +38,7 @@
                         :font "Source Code Pro-14")
   )
   (progn
-    (set-face-attribute 'default nil :family "Ubuntu Mono" :height 140)
+    (set-face-attribute 'default nil :family "Source Code Pro" :height 120)
   )
 )
 
