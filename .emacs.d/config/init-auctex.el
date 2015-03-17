@@ -23,8 +23,11 @@
   (add-hook hook 'turn-on-auto-fill)
   (add-hook hook (lambda() (flyspell-mode 1))))
 (setq TeX-view-program-selection '((output-pdf "PDF Viewer")))
-(setq TeX-view-program-list
-  '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
+(if (eq system-type 'darwin)
+  (progn
+    (setq TeX-view-program-list '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b"))))
+  (progn
+    (setq TeX-view-program-list '(("PDF Viewer" "evince --page-index=%(outpage) %o")))))
 ;; (setq font-latex-fontify-script nil)
 ;; (setq font-latex-fontify-sectioning 'color)
 (provide 'init-auctex)
