@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: texttt
+# key: t
+# binding: direct-keybinding
+# --
+\texttt{$0}
