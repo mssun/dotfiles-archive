@@ -4,3 +4,4 @@
 .emacs.d/elpa
 .emacs.d/recentf
 .emacs.d/projectile*
+.emacs.d/eshell
