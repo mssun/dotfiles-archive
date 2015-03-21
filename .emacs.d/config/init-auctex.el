@@ -8,6 +8,7 @@
 (setq LaTeX-item-indent 0)
 (setq TeX-newline-function 'newline-and-indent)
 
+(setq TeX-command-default "xelatex")
 (dolist (hook '(LaTeX-mode-hook))
   (add-hook hook (lambda ()
     (push
@@ -21,7 +22,11 @@
       TeX-command-list)))
   (add-hook hook '(lambda() (setq TeX-command-default "latexmk")))
   (add-hook hook 'turn-on-auto-fill)
-  (add-hook hook (lambda() (flyspell-mode 1))))
+  (add-hook hook (lambda() (flyspell-mode 1)))
+  (add-hook hook '(lambda() (local-set-key "\C-c\C-x" (lambda () 
+                   (interactive)
+                   (TeX-save-document (TeX-master-file))
+                   (TeX-command "xelatexmk" 'TeX-master-file' -1))))))
 (setq TeX-view-program-selection '((output-pdf "PDF Viewer")))
 (if (eq system-type 'darwin)
   (progn
