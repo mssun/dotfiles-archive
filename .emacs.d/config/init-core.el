@@ -7,6 +7,25 @@
 (setq save-place-file (concat dotemacs-cache-directory "places"))
 (setq-default save-place t)
 
+
+;; minibuffer history
+(require 'savehist)
+(setq savehist-file (concat dotemacs-cache-directory "savehist")
+      savehist-additional-variables '(search ring regexp-search-ring)
+      savehist-autosave-interval 60
+      history-length 1000)
+(savehist-mode t)
+
+;; recent files
+(require 'recentf)
+(setq recentf-save-file (concat dotemacs-cache-directory "recentf"))
+(setq recentf-max-saved-items 1000)
+(setq recentf-max-menu-items 500)
+(setq recentf-auto-cleanup 300)
+(add-to-list 'recentf-exclude "COMMIT_EDITMSG\\'")
+(recentf-mode t)
+(run-with-timer 1800 1800 'recentf-save-list)
+
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (setq inhibit-splash-screen t)
