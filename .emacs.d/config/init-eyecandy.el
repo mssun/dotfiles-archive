@@ -38,7 +38,7 @@
                         :font "Source Code Pro-14")
   )
   (progn
-    (set-face-attribute 'default nil :family "Source Code Pro" :height 120)
+    (set-face-attribute 'default nil :font "Source Code Pro-11")
   )
 )
 
