@@ -32,15 +32,16 @@
 ;       display-time-default-load-average nil)
 ; (display-time-mode t)
 
-(if (eq system-type 'darwin)
-  (progn 
-    (set-face-attribute 'default nil 
-                        :font "Source Code Pro-14")
-  )
-  (progn
-    (set-face-attribute 'default nil :font "Source Code Pro-11")
-  )
-)
+(set-default-font "Source Code Pro-11")
+
+;;(if (eq system-type 'darwin)
+;;  (progn 
+;;    (set-face-attribute 'default nil :font "Source Code Pro-14")
+;;  )
+;;  (progn
+;;    (set-face-attribute 'default nil :font "Source Code Pro-11")
+;;  )
+;;)
 
 (add-to-list 'default-frame-alist '(height . 30))
 (add-to-list 'default-frame-alist '(width. 80))
