@@ -36,7 +36,7 @@
     init-c
     init-elpy
     init-projectile
-    init-mu4e
+    ;; init-mu4e
     init-flycheck
     init-bindings
     init-calfw
