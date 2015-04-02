@@ -38,7 +38,7 @@
 
 (blink-cursor-mode -1)
 (setq mac-right-command-modifier 'meta)
-
+(global-auto-revert-mode t)
 (electric-indent-mode t)
 (setq-default indent-tabs-mode nil)
 
@@ -68,5 +68,8 @@
 
 (require-package 'dash)
 (require-package 'dash-functional)
+
+(require 'ibuf-ext)
+(add-to-list 'ibuffer-never-show-predicates "^\\*")
 
 (provide 'init-core)
