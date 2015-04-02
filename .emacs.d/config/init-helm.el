@@ -27,8 +27,9 @@
   (require-package 'helm-company))
 
 (require 'helm-config)
-(require 'helm-config)
 (after 'helm
-    (helm-autoresize-mode t))
+  (helm-autoresize-mode t))
 
+(setq helm-display-header-line nil)
+(set-face-attribute 'helm-source-header nil :height 1.0)
 (provide 'init-helm)
