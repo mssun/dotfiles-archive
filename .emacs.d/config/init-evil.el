@@ -26,6 +26,9 @@
 (require-package 'evil-visualstar)
 (global-evil-visualstar-mode t)
 
+(global-set-key (kbd "*") 'evil-search-forward)
+(global-set-key (kbd "#") 'evil-search-backward)
+
 (evil-mode t)
 
 (provide 'init-evil)

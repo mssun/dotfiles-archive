@@ -57,5 +57,14 @@
         (define-key evil-normal-state-map (kbd "SPC l") 'helm-swoop)
               (define-key evil-normal-state-map (kbd "SPC L") 'helm-multi-swoop)))
 
+    (after "ace-jump-mode-autoloads"
+      (define-key evil-operator-state-map (kbd "z") 'evil-ace-jump-char-mode)
+      (define-key evil-normal-state-map (kbd "s") 'evil-ace-jump-char-mode)
+      (define-key evil-motion-state-map (kbd "S-SPC") 'evil-ace-jump-line-mode))
+
+    (after "multiple-cursors-autoloads"
+      (after 'js2-mode
+        (evil-define-key 'normal js2-mode-map (kbd "g r") 'js2r-rename-var))
+      (define-key evil-normal-state-map (kbd "g r") 'mc/mark-all-like-this-dwim))
 )
 (provide 'init-bindings)
