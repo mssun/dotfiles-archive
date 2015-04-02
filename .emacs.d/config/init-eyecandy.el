@@ -1,8 +1,10 @@
-; (setq show-paren-delay 0)
 (show-paren-mode t)
+(setq show-paren-delay 0)
 
 (line-number-mode t)
 (column-number-mode t)
+(display-time-mode t)
+(size-indication-mode t)
 
 ;; (require-package 'diminish)
 ;; (diminish 'visual-line-mode)
@@ -48,4 +50,17 @@
 
 (require-package 'rainbow-delimiters)
 
+(require-package 'color-identifiers-mode)
+(global-color-identifiers-mode)
+
+(require-package 'highlight-symbol)
+(setq highlight-symbol-idle-delay 0.3)
+(add-hook 'prog-mode-hook 'highlight-symbol-mode)
+
+(require-package 'highlight-numbers)
+(add-hook 'prog-mode-hook 'highlight-numbers-mode)
+
+(require-package 'highlight-quoted)
+(add-hook 'prog-mode-hook 'highlight-quoted-mode)
+(add-hook 'find-file-hook 'hl-line-mode)
 (provide 'init-eyecandy)
