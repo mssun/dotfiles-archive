@@ -38,9 +38,9 @@
     init-projectile
     ;; init-mu4e
     init-flycheck
-    init-bindings
     init-calfw
     init-misc
+    init-bindings
     )
   "Set of modules enable in dotemacs."
   :group 'dotemacs)

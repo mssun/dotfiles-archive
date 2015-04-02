@@ -4,6 +4,7 @@
 
 (require-package 'evil)
 (require 'evil)
+(evil-mode t)
 
 (unless (display-graphic-p)
   (evil-esc-mode))
@@ -29,6 +30,5 @@
 (global-set-key (kbd "*") 'evil-search-forward)
 (global-set-key (kbd "#") 'evil-search-backward)
 
-(evil-mode t)
 
 (provide 'init-evil)

@@ -10,15 +10,14 @@
 (setq helm-semantic-fuzzy-match t)
 (setq helm-imenu-fuzzy-match t)
 (setq helm-lisp-fuzzy-completion t)
-(setq helm-display-header-line nil)
+
+(require-package 'helm)
+(require-package 'helm-descbinds)
 
 (setq helm-swoop-pre-input-function #'ignore)
 (setq helm-swoop-use-line-number-face t)
 (setq helm-swoop-split-with-multiple-windows t)
-
-(require-package 'helm)
 (require-package 'helm-swoop)
-(require-package 'helm-descbinds)
 
 (after "projectile-autoloads"
   (require-package 'helm-projectile))
@@ -30,6 +29,7 @@
 (after 'helm
   (helm-autoresize-mode t))
 
-(setq helm-display-header-line nil)
-(set-face-attribute 'helm-source-header nil :height 1.0)
+;; (setq helm-display-header-line nil)
+;; (set-face-attribute 'helm-source-header nil :height 1.0)
+
 (provide 'init-helm)
