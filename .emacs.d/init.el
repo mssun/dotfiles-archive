@@ -40,6 +40,7 @@
     init-flycheck
     init-calfw
     init-misc
+    init-vcs
     init-bindings
     )
   "Set of modules enable in dotemacs."
