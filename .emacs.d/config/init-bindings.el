@@ -53,6 +53,15 @@
       (define-key evil-normal-state-map (kbd "SPC y") 'helm-show-kill-ring)
       (define-key evil-normal-state-map (kbd "SPC m") 'helm-bookmarks)
       (define-key evil-normal-state-map (kbd "SPC r") 'helm-register)
+      (after "helm-gtags"
+        '(progn
+           (define-key helm-gtags-mode-map (kbd "M-t") 'helm-gtags-find-tag)
+           (define-key helm-gtags-mode-map (kbd "M-r") 'helm-gtags-find-rtag)
+           (define-key helm-gtags-mode-map (kbd "M-s") 'helm-gtags-find-symbol)
+           (define-key helm-gtags-mode-map (kbd "M-g M-p") 'helm-gtags-parse-file)
+           (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
+           (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
+           (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)))
       (after "helm-swoop-autoloads"
         (define-key evil-normal-state-map (kbd "SPC l") 'helm-swoop)
               (define-key evil-normal-state-map (kbd "SPC L") 'helm-multi-swoop)))
