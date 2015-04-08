@@ -13,10 +13,16 @@
 
 (require-package 'helm)
 (require-package 'helm-descbinds)
+(require-package 'helm-gtags)
 
 (setq helm-swoop-pre-input-function #'ignore)
 (setq helm-swoop-use-line-number-face t)
 (setq helm-swoop-split-with-multiple-windows t)
+
+(custom-set-variables
+ '(helm-gtags-prefix-key "C-t")
+ '(helm-gtags-suggested-key-mapping t))
+
 (require-package 'helm-swoop)
 
 (after "projectile-autoloads"
@@ -31,5 +37,16 @@
 
 ;; (setq helm-display-header-line nil)
 ;; (set-face-attribute 'helm-source-header nil :height 1.0)
+
+(add-hook 'c-mode-hook 'helm-gtags-mode)
+(add-hook 'c++-mode-hook 'helm-gtags-mode)
+(add-hook 'asm-mode-hook 'helm-gtags-mode)
+
+;; customize
+(custom-set-variables
+ '(helm-gtags-path-style 'relative)
+ '(helm-gtags-use-input-at-cursor t)
+ '(helm-gtags-ignore-case t)
+ '(helm-gtags-auto-update t))
 
 (provide 'init-helm)
