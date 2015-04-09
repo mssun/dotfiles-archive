@@ -7,15 +7,20 @@
     ;; fix conflict with electric-indent-mode in 24.4
   (define-key evil-insert-state-map [remap newline] 'newline)
   (define-key evil-insert-state-map [remap newline-and-indent] 'newline-and-indent)
-    (after "evil-leader-autoloads"
-	(evil-leader/set-leader ",")
-	(evil-leader/set-key
-          "w" 'save-buffer
-          "v" (kbd "C-w v C-w l")
-          "s" (kbd "C-w s C-w j")
-          "h h" 'help-for-help-internal
-          "b d" 'kill-this-buffer))
-
+  (after 'evil-leader
+    (evil-leader/set-leader ",")
+    (evil-leader/set-key
+      "w" 'save-buffer
+      "v" (kbd "C-w v C-w l")
+      "s" (kbd "C-w s C-w j")
+      "h h" 'help-for-help-internal
+      "b d" 'kill-this-buffer)
+    (after "magit-autoloads"
+      (evil-leader/set-key
+        "g s" 'magit-status
+        "g b" 'magit-blame-mode
+        "g c" 'magit-commit
+        "g l" 'magit-log)))
     (global-set-key (kbd "C-w") 'evil-window-map)
     (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
     (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
