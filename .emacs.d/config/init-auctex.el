@@ -7,7 +7,7 @@
 (setq TeX-PDF-mode t)
 (setq LaTeX-item-indent 0)
 (setq TeX-newline-function 'newline-and-indent)
-
+(setq LaTeX-verbatim-environments (quote ("verbatim" "verbatim*" "lstlisting")))
 (setq TeX-command-default "xelatex")
 (dolist (hook '(LaTeX-mode-hook))
   (add-hook hook (lambda ()

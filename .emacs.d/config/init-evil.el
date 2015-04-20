@@ -1,3 +1,34 @@
+(defgroup dotemacs-evil nil
+  "Configuration options for evil-mode."
+  :group 'dotemacs
+  :prefix 'dotemacs-evil)
+
+(defcustom dotemacs-evil/evil-state-modes
+  '(fundamental-mode
+    text-mode
+    prog-mode
+    sws-mode
+    dired-mode
+    comint-mode
+    log-edit-mode
+    compilation-mode)
+  "List of modes that should start up in Evil state."
+  :type '(repeat (symbol))
+  :group 'dotemacs-evil)
+
+(defcustom dotemacs-evil/emacs-state-modes
+  '(debugger-mode
+    git-commit-mode
+    git-rebase-mode)
+  "List of modes that should start up in Evil Emacs state."
+  :type '(repeat (symbol))
+  :group 'dotemacs-evil)
+
+(defcustom dotemacs-evil/emacs-cursor
+  "red"
+  "The color of the cursor when in Emacs state."
+  :type 'color)
+
 ; (setq evil-want-C-u-scroll t)
 (setq evil-search-module 'evil-search)
 (setq evil-magic 'very-magic)
