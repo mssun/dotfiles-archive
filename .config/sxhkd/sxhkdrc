@@ -84,9 +84,14 @@ super + Return
 	urxvt
 
 super + space
-	dmenu_run
+        dmenu_run -nf '#a3a6ab' -nb '#34322e' -h 14
 
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
 
+super + alt + Escape
+	pkill -x panel; bspc quit
+
+ctrl + alt + l
+        slock
