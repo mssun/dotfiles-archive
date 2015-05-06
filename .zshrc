@@ -88,4 +88,6 @@ export rsync_proxy=$http_proxy
 export socks_proxy=socks.cse.cuhk.edu.hk:1080
 export no_proxy="localhost,127.0.0.0/8,127.0.1.1,127.0.1.1*,local.home"
 
+export BROWSER=google-chrome-stable
+
 PATH=$PATH:/home/mssun/010editor;export PATH; # ADDED BY INSTALLER - DO NOT EDIT OR DELETE THIS COMMENT - 87FF8EFC-483D-BCAA-D67D-735CF60410D1 2BA603BB-7AD6-E062-4254-5F1076290246
