@@ -29,8 +29,13 @@
      xkcd
      c-c++
      python
+     ruby
+     php
      html
      markdown
+     evil-commentary
+     evil-snipe
+     shell-scripts
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
@@ -146,6 +151,16 @@ before layers configuration."
         `(("." . ,(concat spacemacs-cache-directory "undo"))))
   (unless (file-exists-p (concat spacemacs-cache-directory "undo"))
       (make-directory (concat spacemacs-cache-directory "undo")))
+  (setq TeX-source-correlate-mode t)
+  (setq TeX-source-correlate-start-server t)
+  (setq TeX-source-correlate-method 'synctex)
+  (setq TeX-view-program-selection '((output-pdf "Okular")))
+  (setq TeX-view-program-list
+   '(("Okular" "okular --unique %o#src:%n%b")))
+  (custom-set-variables
+   '(markdown-command "/usr/bin/pandoc"))
+  (setq browse-url-browser-function 'browse-url-generic
+        browse-url-generic-program "google-chrome-stable")
   )
 
 (defun dotspacemacs/config ()
