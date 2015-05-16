@@ -51,7 +51,7 @@ plugins=(git)
 
 export PATH="/home/mssun/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
 export ANDROID_NDK_HOME=/opt/android-ndk
-export PATH="$ANDROID_NDK_HOME/android-ndk-r10d:$ANDROID_NDK_HOME/android-ndk-r10d/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
+export PATH="$ANDROID_NDK_HOME:$ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
 export PATH="/home/mssun/.config/panel:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -81,12 +81,14 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias pc="proxychains"
+
 export http_proxy=http://proxy.cse.cuhk.edu.hk:8000
 export https_proxy=$http_proxy
 export ftp_proxy=$http_proxy
 export rsync_proxy=$http_proxy
 export socks_proxy=socks.cse.cuhk.edu.hk:1080
-export no_proxy="localhost,127.0.0.0/8,127.0.1.1,127.0.1.1*,local.home"
+export no_proxy="localhost,127.0.0.0/8,127.0.1.1,127.0.1.1*,local.home, 137.189.88.*, 192.168.0.0/16"
 
 export BROWSER=google-chrome-stable
 
