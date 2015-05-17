@@ -26,11 +26,9 @@
      syntax-checking
      auctex
      colors
-     xkcd
      c-c++
      python
      ruby
-     php
      html
      markdown
      evil-commentary
