@@ -95,5 +95,12 @@ super + alt + Escape
 
 ctrl + alt + l
         slock
+
 super + Print
     escrotum -s
+
+super + minus
+    amixer -c 0 -q set Master 1-
+
+super + equal
+    amixer -c 0 -q set Master 1+
