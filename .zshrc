@@ -1,3 +1,5 @@
+# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/doc/pkgfile/command-not-found.zsh
 # Path to your oh-my-zsh installation.
 export ZSH=/home/mssun/.oh-my-zsh
 
@@ -82,6 +84,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias pc="proxychains"
+alias vi="vim"
 
 export http_proxy=http://proxy.cse.cuhk.edu.hk:8000
 export https_proxy=$http_proxy
@@ -93,3 +96,4 @@ export no_proxy="localhost,127.0.0.0/8,127.0.1.1,127.0.1.1*,local.home, 137.189.
 export BROWSER=google-chrome-stable
 
 PATH=$PATH:/home/mssun/010editor;export PATH; # ADDED BY INSTALLER - DO NOT EDIT OR DELETE THIS COMMENT - 87FF8EFC-483D-BCAA-D67D-735CF60410D1 2BA603BB-7AD6-E062-4254-5F1076290246
+setopt nohashdirs
