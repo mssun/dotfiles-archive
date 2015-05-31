@@ -1,4 +1,4 @@
-;; -*- mode: dotspacemacs -*-
+;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
@@ -12,31 +12,33 @@
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
-     ;; --------------------------------------------------------
-     ;; Example of useful layers you may want to use right away
-     ;; Uncomment a layer name and press C-c C-c to install it
-     ;; --------------------------------------------------------
-     ;mssun
-     auto-completion
-     ;better-defaults
-     ;(git :variables
-     ;     git-gutter-use-fringe t)
-     ;markdown
-     ;org
-     ;syntax-checking
+     ;; ----------------------------------------------------------------
+     ;; Example of useful layers you may want to use right away.
+     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
+     ;; <M-m f e R> (Emacs style) to install them.
+     ;; ----------------------------------------------------------------
+     mssun
+     better-defaults
      auctex
-     ;colors
-     ;c-c++
-     ;python
-     ;ruby
-     ;html
-     ;markdown
-     ;evil-commentary
-     ;evil-snipe
-     ;shell-scripts
-     ;java
-     ;perspectives
+     ;; emacs-lisp
+     (git :variables
+          git-gutter-use-fringe t)
+     markdown
+     org
+     ;; shell
+     syntax-checking
+     auto-completion
+     colors
+     gtags
+     c-c++
+     python
+     perspectives
      )
+   ;; List of additional packages that will be installed wihout being
+   ;; wrapped in a layer. If you need some configuration for these
+   ;; packages then consider to create a layer, you can also put the
+   ;; configuration in `dotspacemacs/config'.
+   dotspacemacs-additional-packages '()
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -54,7 +56,7 @@ before layers configuration."
    ;; Either `vim' or `emacs'. Evil is always enabled but if the variable
    ;; is `emacs' then the `holy-mode' is enabled at startup.
    dotspacemacs-editing-style 'vim
-   ;; If non nil output loading progess in `*Messages*' buffer.
+   ;; If non nil output loading progress in `*Messages*' buffer.
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
    ;; the official spacemacs logo. An integer value is the index of text
@@ -67,13 +69,14 @@ before layers configuration."
    dotspacemacs-always-show-changelog t
    ;; List of items to show in the startup buffer. If nil it is disabled.
    ;; Possible values are: `recents' `bookmarks' `projects'."
-   dotspacemacs-startup-lists '(recents projects bookmarks)
+   dotspacemacs-startup-lists '(recents projects)
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(sanityinc-tomorrow-eighties
                          solarized-light
                          solarized-dark
+                         leuven
                          monokai
                          zenburn)
    ;; If non nil the cursor color matches the state color.
@@ -135,6 +138,9 @@ before layers configuration."
    dotspacemacs-smooth-scrolling t
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    dotspacemacs-smartparens-strict-mode nil
+   ;; Select a scope to highlight delimiters. Possible value is `all',
+   ;; `current' or `nil'. Default is `all'
+   dotspacemacs-highlight-delimiters 'all
    ;; If non nil advises quit functions to keep server open when quitting.
    dotspacemacs-persistent-server nil
    ;; List of search tool executable names. Spacemacs uses the first installed
@@ -150,13 +156,13 @@ before layers configuration."
         undo-tree-history-directory-alist
         `(("." . ,(concat spacemacs-cache-directory "undo"))))
   (unless (file-exists-p (concat spacemacs-cache-directory "undo"))
-      (make-directory (concat spacemacs-cache-directory "undo")))
+    (make-directory (concat spacemacs-cache-directory "undo")))
   (setq TeX-source-correlate-mode t)
   (setq TeX-source-correlate-start-server t)
   (setq TeX-source-correlate-method 'synctex)
   (setq TeX-view-program-selection '((output-pdf "Okular")))
   (setq TeX-view-program-list
-   '(("Okular" "okular --unique %o#src:%n%b")))
+        '(("Okular" "okular --unique %o#src:%n%b")))
   (custom-set-variables
    '(markdown-command "/usr/bin/pandoc"))
   (setq browse-url-browser-function 'browse-url-generic
