@@ -16,24 +16,26 @@
      ;; Example of useful layers you may want to use right away
      ;; Uncomment a layer name and press C-c C-c to install it
      ;; --------------------------------------------------------
-     mssun
+     ;mssun
      auto-completion
-     better-defaults
-     (git :variables
-          git-gutter-use-fringe t)
-     markdown
-     org
-     syntax-checking
+     ;better-defaults
+     ;(git :variables
+     ;     git-gutter-use-fringe t)
+     ;markdown
+     ;org
+     ;syntax-checking
      auctex
-     colors
-     c-c++
-     python
-     ruby
-     html
-     markdown
-     evil-commentary
-     evil-snipe
-     shell-scripts
+     ;colors
+     ;c-c++
+     ;python
+     ;ruby
+     ;html
+     ;markdown
+     ;evil-commentary
+     ;evil-snipe
+     ;shell-scripts
+     ;java
+     ;perspectives
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
