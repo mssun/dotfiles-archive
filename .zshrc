@@ -47,11 +47,11 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git zsh-syntax-highlighting)
 
 # User configuration
 
-export PATH="/home/mssun/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
+export PATH="/home/mssun/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$(ruby -e 'print Gem.user_dir')/bin"
 export ANDROID_NDK_HOME=/opt/android-ndk
 export PATH="$ANDROID_NDK_HOME:$ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
 export PATH="/home/mssun/.config/panel:$PATH"
@@ -97,3 +97,24 @@ export BROWSER=google-chrome-stable
 
 PATH=$PATH:/home/mssun/010editor;export PATH; # ADDED BY INSTALLER - DO NOT EDIT OR DELETE THIS COMMENT - 87FF8EFC-483D-BCAA-D67D-735CF60410D1 2BA603BB-7AD6-E062-4254-5F1076290246
 setopt nohashdirs
+source /usr/share/zsh/scripts/zgen/zgen.zsh
+if ! zgen saved; then
+    echo "Creating a zgen save"
+    zgen oh-my-zsh
+
+    # plugins
+    zgen oh-my-zsh plugins/git
+    zgen oh-my-zsh plugins/sudo
+    zgen oh-my-zsh plugins/command-not-found
+
+    zgen load jimmijj/zsh-syntax-highlighting
+
+    # autosuggestions should be loaded last
+    zgen load tarruda/zsh-autosuggestions
+
+    zgen save
+fi
+zle-line-init() {
+    zle autosuggest-start
+}
+zle -N zle-line-init
