@@ -5,3 +5,6 @@
 .emacs.d/recentf
 .emacs.d/projectile*
 .emacs.d/eshell
+.emacs.d/tramp
+.emacs.d/.mc-lists.el
+.emacs.d/.emacs.desktop
