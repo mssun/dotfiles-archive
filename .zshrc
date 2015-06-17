@@ -88,12 +88,15 @@ alias vi="vim"
 alias rm="rm -i"
 
 export R_LIBS_USER=/home/mssun/.R
-export http_proxy=http://proxy.cse.cuhk.edu.hk:8000
-export https_proxy=$http_proxy
-export ftp_proxy=$http_proxy
-export rsync_proxy=$http_proxy
-export socks_proxy=socks.cse.cuhk.edu.hk:1080
-export no_proxy="localhost,127.0.0.0/8,127.0.1.1,127.0.1.1*,local.home, 137.189.0.0/16, 192.168.0.0/16"
+
+if [ `hostname`=="pc89160" ]; then
+    export http_proxy=http://proxy.cse.cuhk.edu.hk:8000
+    export https_proxy=$http_proxy
+    export ftp_proxy=$http_proxy
+    export rsync_proxy=$http_proxy
+    export socks_proxy=socks.cse.cuhk.edu.hk:1080
+    export no_proxy="localhost,127.0.0.0/8,127.0.1.1,127.0.1.1*,local.home, 137.189.0.0/16, 192.168.0.0/16"
+fi
 
 export BROWSER=google-chrome-stable
 
@@ -108,6 +111,8 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/git
     zgen oh-my-zsh plugins/sudo
     zgen oh-my-zsh plugins/command-not-found
+
+    zgen load zsh-users/zsh-completions src
 
     zgen load jimmijj/zsh-syntax-highlighting
 
