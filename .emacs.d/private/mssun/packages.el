@@ -10,21 +10,21 @@
 ;;
 ;;; License: GPLv3
 
-(defvar mssun-packages
-  '(
-    color-theme-sanityinc-tomorrow
-    )
-  "List of all packages to install and/or initialize. Built-in packages
-which require an initialization must be listed explicitly in the list.")
+;; List of all packages to install and/or initialize. Built-in packages
+;; which require an initialization must be listed explicitly in the list.
+(setq mssun-packages
+    '(
+      color-theme-sanityinc-tomorrow
+      ))
 
-(defvar mssun-excluded-packages '()
-  "List of packages to exclude.")
-
+;; List of packages to exclude.
+(setq mssun-excluded-packages '())
+(defun mssun/init-color-theme-sanityinc-tomorrow ())
 ;; For each package, define a function mssun/init-<package-mssun>
 ;;
-(defun mssun/init-color-theme-sanityinc-tomorrow ()
-  "Initialize my package"
-  )
+;; (defun mssun/init-my-package ()
+;;   "Initialize my package"
+;;   )
 ;;
 ;; Often the body of an initialize function uses `use-package'
 ;; For more info on `use-package', see readme:

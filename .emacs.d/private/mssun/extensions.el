@@ -10,17 +10,15 @@
 ;;
 ;;; License: GPLv3
 
-(defvar mssun-pre-extensions
-  '(
-    ;; pre extension mssuns go here
-    )
-  "List of all extensions to load before the packages.")
+(setq mssun-pre-extensions
+      '(
+        ;; pre extension mssuns go here
+        ))
 
-(defvar mssun-post-extensions
-  '(
-    ;; post extension mssuns go here
-    )
-  "List of all extensions to load after the packages.")
+(setq mssun-post-extensions
+      '(
+        ;; post extension mssuns go here
+        ))
 
 ;; For each extension, define a function mssun/init-<extension-mssun>
 ;;
