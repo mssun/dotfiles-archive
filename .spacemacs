@@ -20,11 +20,9 @@
      mssun
      better-defaults
      auctex
-     ;; emacs-lisp
      (git :variables
           git-gutter-use-fringe t)
      org
-     ;; shell
      syntax-checking
      auto-completion
      colors
@@ -34,7 +32,6 @@
      markdown
      python
      html
-     python
      )
    ;; List of additional packages that will be installed wihout being
    ;; wrapped in a layer. If you need some configuration for these
