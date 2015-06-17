@@ -1,0 +1,17 @@
+own_window yes                                                                  
+own_window_class Conky                                                          
+own_window_type desktop                                                         
+background no
+out_to_console yes
+update_interval 1
+total_run_times 0
+use_spacer none
+
+TEXT
+${cpu cpu0}% | \
+${memperc}% | \
+${addr eno1} | \
+${upspeedf eno1}kb/s | \
+${downspeedf eno1}kb/s | \
+${exec amixer get Master | egrep -o "[0-9]+%" | head -1 | egrep -o "[0-9]*"}% | \
+${time %a %d} ${time %H:%M}    

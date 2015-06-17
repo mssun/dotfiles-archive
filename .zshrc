@@ -85,13 +85,15 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias pc="proxychains"
 alias vi="vim"
+alias rm="rm -i"
 
+export R_LIBS_USER=/home/mssun/.R
 export http_proxy=http://proxy.cse.cuhk.edu.hk:8000
 export https_proxy=$http_proxy
 export ftp_proxy=$http_proxy
 export rsync_proxy=$http_proxy
 export socks_proxy=socks.cse.cuhk.edu.hk:1080
-export no_proxy="localhost,127.0.0.0/8,127.0.1.1,127.0.1.1*,local.home, 137.189.88.*, 192.168.0.0/16"
+export no_proxy="localhost,127.0.0.0/8,127.0.1.1,127.0.1.1*,local.home, 137.189.0.0/16, 192.168.0.0/16"
 
 export BROWSER=google-chrome-stable
 

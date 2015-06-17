@@ -99,6 +99,9 @@ ctrl + alt + l
 super + Print
     escrotum -s
 
+Print
+    escrotum
+
 super + minus
     amixer -c 0 -q set Master 1-
 
