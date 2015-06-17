@@ -154,6 +154,12 @@ before layers configuration."
    dotspacemacs-default-package-repository nil
    )
   ;; User initialization goes here
+  )
+
+(defun dotspacemacs/config ()
+  "Configuration function.
+ This function is called at the very end of Spacemacs initialization after
+layers configuration."
   (setq undo-tree-auto-save-history t
         undo-tree-history-directory-alist
         `(("." . ,(concat spacemacs-cache-directory "undo"))))
@@ -170,12 +176,6 @@ before layers configuration."
   (setq browse-url-browser-function 'browse-url-generic
         browse-url-generic-program "google-chrome-stable")
   (setq-default TeX-master "paper")
-  )
-
-(defun dotspacemacs/config ()
-  "Configuration function.
- This function is called at the very end of Spacemacs initialization after
-layers configuration."
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
