@@ -18,13 +18,13 @@
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      mssun
+     auto-completion
+     osx
      better-defaults
      auctex
      (git :variables
           git-gutter-use-fringe t)
-     org
      syntax-checking
-     auto-completion
      colors
      gtags
      perspectives
@@ -32,6 +32,7 @@
      markdown
      python
      html
+     org
      )
    ;; List of additional packages that will be installed wihout being
    ;; wrapped in a layer. If you need some configuration for these
@@ -173,6 +174,7 @@ layers configuration."
   (setq browse-url-browser-function 'browse-url-generic
         browse-url-generic-program "google-chrome-stable")
   (setq-default TeX-master "paper")
+  (setq powerline-default-separator 'nil)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
