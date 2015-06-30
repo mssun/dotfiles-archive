@@ -52,7 +52,8 @@ plugins=(git osx)
 # User configuration
 
 source $ZSH/oh-my-zsh.sh
-if [ `hostname`=="pc89160" ]; then
+if [[ `uname` == "Linux" ]]; then
+  echo `uname`
   export PATH="/home/mssun/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$(ruby -e 'print Gem.user_dir')/bin"
   export ANDROID_NDK_HOME=/opt/android-ndk
   export PATH="$ANDROID_NDK_HOME:$ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
@@ -95,7 +96,7 @@ alias rm="rm -i"
 
 export R_LIBS_USER=/home/mssun/.R
 
-if [ `hostname`=="pc89160" ]; then
+if [[ `uname` == "Linux" ]]; then
     export http_proxy=http://proxy.cse.cuhk.edu.hk:8000
     export https_proxy=$http_proxy
     export ftp_proxy=$http_proxy
