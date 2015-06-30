@@ -51,12 +51,13 @@ plugins=(git osx)
 
 # User configuration
 
-export PATH="/usr/local/share/python:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-if [ `uname`=="Linux" ]; then
+if [ `hostname`=="pc89160" ]; then
   export PATH="/home/mssun/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$(ruby -e 'print Gem.user_dir')/bin"
   export ANDROID_NDK_HOME=/opt/android-ndk
   export PATH="$ANDROID_NDK_HOME:$ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
   export PATH="/home/mssun/.config/panel:$PATH"
+else
+  export PATH="/usr/local/share/python:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin"
 fi
 # export MANPATH="/usr/local/man:$MANPATH"
 
