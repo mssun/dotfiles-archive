@@ -53,7 +53,6 @@ plugins=(git osx)
 
 source $ZSH/oh-my-zsh.sh
 if [[ `uname` == "Linux" ]]; then
-  echo `uname`
   export PATH="/home/mssun/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$(ruby -e 'print Gem.user_dir')/bin"
   export ANDROID_NDK_HOME=/opt/android-ndk
   export PATH="$ANDROID_NDK_HOME:$ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
