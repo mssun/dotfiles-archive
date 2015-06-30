@@ -175,6 +175,7 @@ layers configuration."
         browse-url-generic-program "google-chrome-stable")
   (setq-default TeX-master "paper")
   (setq powerline-default-separator 'nil)
+  (setq vc-follow-symlinks t)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
