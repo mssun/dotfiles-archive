@@ -59,7 +59,7 @@ if [[ `uname` == "Linux" ]]; then
   export PATH="/home/mssun/.config/panel:$PATH"
   source /usr/share/zsh/scripts/zgen/zgen.zsh
 else
-  export PATH="/usr/local/share/python:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin"
+  export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/share/python:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin"
   source ~/.zgen/zgen.zsh
 fi
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -115,10 +115,16 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/git
     zgen oh-my-zsh plugins/sudo
     zgen oh-my-zsh plugins/command-not-found
+    zgen oh-my-zsh plugins/autojump
+    zgen oh-my-zsh plugins/brew
+    zgen oh-my-zsh plugins/common-aliases
+    zgen oh-my-zsh plugins/osx
+    zgen oh-my-zsh plugins/z
 
+    zgen load zsh-users/zsh-syntax-highlighting
+    zgen load zsh-users/zsh-history-substring-search
     zgen load zsh-users/zsh-completions src
-
-    zgen load jimmijj/zsh-syntax-highlighting
+    zgen load djui/alias-tips
 
     # autosuggestions should be loaded last
     zgen load tarruda/zsh-autosuggestions
