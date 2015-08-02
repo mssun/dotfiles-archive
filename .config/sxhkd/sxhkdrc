@@ -13,6 +13,10 @@ super + t
 
 super + b
 	bspc desktop -B
+super + {q,w}
+    bspc monitor -f {L,R}
+super + {shift,alt} + {q,w}
+    bspc {window,desktop} -m {L,R}
 
 super + {s,f}
 	bspc window -t {floating,fullscreen}
