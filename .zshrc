@@ -61,6 +61,7 @@ if [[ `uname` == "Linux" ]]; then
 else
   export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/share/python:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin"
   source ~/.zgen/zgen.zsh
+  [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 fi
 # export MANPATH="/usr/local/man:$MANPATH"
 

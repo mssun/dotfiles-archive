@@ -34,6 +34,7 @@
      python
      latex
      markdown
+     search-engine
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -184,8 +185,11 @@ layers configuration."
           ("Skim" "displayline -b -g %n %o %b")))
   (custom-set-variables
    '(markdown-command "/usr/bin/pandoc"))
-  (setq browse-url-browser-function 'browse-url-generic
-        browse-url-generic-program "google-chrome-stable")
+  (cond
+   ((string-equal system-type "gnu/linux")
+    (progn
+      (setq browse-url-browser-function 'browse-url-generic
+            browse-url-generic-program "google-chrome-stable"))))
   (setq-default TeX-master "paper")
   (setq vc-follow-symlinks t)
   (setq ad-redefinition-action 'accept)
