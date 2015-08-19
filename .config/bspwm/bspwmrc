@@ -10,7 +10,8 @@ bspc config gapless_monocle     true
 bspc config focus_by_distance   true
 bspc config focused_border_color "#cc99cc"
 
-bspc monitor -d I II III IV V VI VII VIII IX X
+bspc monitor DP-0 -n L -d I II III IV V
+bspc monitor DVI-I-1 -n R -d VI VII VIII IX X
 
 bspc rule -a Gimp desktop=^8 follow=on floating=on
 bspc rule -a Chromium desktop=^2
@@ -20,5 +21,6 @@ bspc rule -a Spotify floating=on
 bspc rule -a VirtualBox floating=on
 bspc rule -a Pidgin floating=on
 bspc rule -a Skype floating=on
+bspc rule -a Dia floating=on
 
 panel &
