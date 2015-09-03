@@ -35,6 +35,7 @@
      latex
      markdown
      search-engine
+     shell
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -193,6 +194,7 @@ layers configuration."
   (setq-default TeX-master "paper")
   (setq vc-follow-symlinks t)
   (setq ad-redefinition-action 'accept)
+  (setq org-agenda-files (list "~/Dropbox/org/tasks.org"))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
