@@ -44,6 +44,7 @@ values."
      shell
      eyebrowse
      chinese
+     wakatime
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -213,27 +214,25 @@ layers configuration. You are free to put any user code."
   (setq TeX-source-correlate-mode t)
   (setq TeX-source-correlate-start-server t)
   (setq TeX-source-correlate-method 'synctex)
-  (cond
-   ((string-equal system-type "darwin")
-    (progn (setq TeX-view-program-selection '((output-pdf "Skim")))))
-   ((string-equal system-type "gnu/linux")
-    (progn (setq TeX-view-program-selection '((output-pdf "Okular"))))))
+  (when (spacemacs/system-is-mac)
+    (setq TeX-view-program-selection '((output-pdf "Skim"))))
+  (when (spacemacs/system-is-linux)
+    (setq TeX-view-program-selection '((output-pdf "Okular"))))
   (setq TeX-view-program-list
         '(("Okular" "okular --unique %o#src:%n%b")
           ("Skim" "displayline -b -g %n %o %b")))
-  (custom-set-variables
-   '(markdown-command "/usr/bin/pandoc"))
-  (cond
-   ((string-equal system-type "gnu/linux")
-    (progn
-      (setq browse-url-browser-function 'browse-url-generic
-            browse-url-generic-program "google-chrome-stable"))))
+  (when (spacemacs/system-is-linux)
+    (setq browse-url-browser-function 'browse-url-generic
+          browse-url-generic-program "google-chrome-stable"))
   (setq-default TeX-master "paper")
   (setq vc-follow-symlinks t)
   (setq ad-redefinition-action 'accept)
   (setq org-agenda-files (list "~/Dropbox/org/tasks.org"))
   (when (spacemacs/system-is-mac)
     (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16))
+  (setq wakatime-api-key "8e596c7c-975f-4f32-9754-e88ea23c2ce5")
+  (setq wakatime-cli-path "/usr/bin/wakatime")
+  (setq markdown-command "/usr/bin/pandoc")
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
