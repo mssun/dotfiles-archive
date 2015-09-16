@@ -214,10 +214,9 @@ layers configuration. You are free to put any user code."
   (setq TeX-source-correlate-mode t)
   (setq TeX-source-correlate-start-server t)
   (setq TeX-source-correlate-method 'synctex)
-  (when (spacemacs/system-is-mac)
-    (setq TeX-view-program-selection '((output-pdf "Skim"))))
-  (when (spacemacs/system-is-linux)
-    (setq TeX-view-program-selection '((output-pdf "Okular"))))
+  (cond
+   ((spacemacs/system-is-mac) (setq TeX-view-program-selection '((output-pdf "Skim"))))
+   ((spacemacs/system-is-linux) (setq TeX-view-program-selection '((output-pdf "Okular")))))
   (setq TeX-view-program-list
         '(("Okular" "okular --unique %o#src:%n%b")
           ("Skim" "displayline -b -g %n %o %b")))
@@ -230,8 +229,10 @@ layers configuration. You are free to put any user code."
   (setq org-agenda-files (list "~/Dropbox/org/tasks.org"))
   (when (spacemacs/system-is-mac)
     (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16))
+  (cond
+   ((spacemacs/system-is-linux) (setq wakatime-cli-path "/usr/bin/wakatime"))
+   ((spacemacs/system-is-mac) (setq wakatime-cli-path "/usr/local/bin/wakatime")))
   (setq wakatime-api-key "8e596c7c-975f-4f32-9754-e88ea23c2ce5")
-  (setq wakatime-cli-path "/usr/bin/wakatime")
   (setq markdown-command "/usr/bin/pandoc")
 )
 
