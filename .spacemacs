@@ -43,6 +43,7 @@ values."
      search-engine
      shell
      eyebrowse
+     chinese
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -231,6 +232,8 @@ layers configuration. You are free to put any user code."
   (setq vc-follow-symlinks t)
   (setq ad-redefinition-action 'accept)
   (setq org-agenda-files (list "~/Dropbox/org/tasks.org"))
+  (when (spacemacs/system-is-mac)
+    (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
