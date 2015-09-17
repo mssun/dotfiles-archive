@@ -227,8 +227,12 @@ layers configuration. You are free to put any user code."
   (setq vc-follow-symlinks t)
   (setq ad-redefinition-action 'accept)
   (setq org-agenda-files (list "~/Dropbox/org/tasks.org"))
-  (when (spacemacs/system-is-mac)
-    (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16))
+  (cond
+   ((spacemacs/system-is-mac) (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16))
+   ((spacemacs/system-is-linux) (spacemacs//set-monospaced-font "Source Code Pro" "Source Han Sans CN" 14 16)))
+  (set-fontset-font (frame-parameter nil 'font) 'symbol
+                    (font-spec :family "Source Code Pro"))
+  (setq org-bullets-bullet-list '("◉" "○" "✸" "•"))
   (cond
    ((spacemacs/system-is-linux) (setq wakatime-cli-path "/usr/bin/wakatime"))
    ((spacemacs/system-is-mac) (setq wakatime-cli-path "/usr/local/bin/wakatime")))
