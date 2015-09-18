@@ -44,7 +44,6 @@ values."
      shell
      eyebrowse
      chinese
-     wakatime
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -233,10 +232,6 @@ layers configuration. You are free to put any user code."
   (set-fontset-font (frame-parameter nil 'font) 'symbol
                     (font-spec :family "Source Code Pro"))
   (setq org-bullets-bullet-list '("◉" "○" "✸" "•"))
-  (cond
-   ((spacemacs/system-is-linux) (setq wakatime-cli-path "/usr/bin/wakatime"))
-   ((spacemacs/system-is-mac) (setq wakatime-cli-path "/usr/local/bin/wakatime")))
-  (setq wakatime-api-key "8e596c7c-975f-4f32-9754-e88ea23c2ce5")
   (setq markdown-command "/usr/bin/pandoc")
 )
 
