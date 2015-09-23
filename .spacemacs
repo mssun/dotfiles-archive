@@ -36,7 +36,8 @@ values."
      gtags
      colors
      osx
-     c-c++
+     (c-c++ :variables
+            c-c++-enable-clang-support t)
      python
      latex
      markdown
