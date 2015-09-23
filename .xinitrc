@@ -7,6 +7,7 @@ fcitx-autostart > /dev/null 2>&1 &
 # sogou-autostart > /dev/null 2>&1 &
 
 feh --bg-scale "/home/mssun/Dropbox/Desktop Pictures/Solid Colors/Solid Aqua Dark Blue.png" --bg-scale "/home/mssun/Dropbox/Desktop Pictures/Bristle Grass.jpg" &
+xset -dpms; xset s off &
 xsetroot -cursor_name left_ptr &
 dunst -config ~/.config/dunst/dunstrc &
 sxhkd &
