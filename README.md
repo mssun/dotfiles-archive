@@ -5,3 +5,4 @@ This repository contains my dotfiles (configuration files) including `.zshrc`, `
 * `.vimrc`: my vim configuration used for three years.
 * `.Xdefaults`: configurations for urxvt terminal.
 * `.emacs.d`: my emacs configurations for evil-mode users.
+* `.spacemacs`: my Spacemacs configurations.
