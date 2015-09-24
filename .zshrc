@@ -59,7 +59,7 @@ if [[ `uname` == "Linux" ]]; then
   export PATH="/home/mssun/.config/panel:$PATH"
   source /usr/share/zsh/scripts/zgen/zgen.zsh
 else
-  export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/share/python:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:$PATH"
+  export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:$PATH"
   source ~/.zgen/zgen.zsh
   [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 fi
