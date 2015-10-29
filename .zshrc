@@ -58,6 +58,7 @@ if [[ `uname` == "Linux" ]]; then
   export PATH="$ANDROID_NDK_HOME:$ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
   export PATH="/home/mssun/.config/panel:$PATH"
   source /usr/share/zsh/scripts/zgen/zgen.zsh
+  source /usr/share/nvm/init-nvm.sh
 else
   export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:$PATH"
   source ~/.zgen/zgen.zsh
@@ -138,4 +139,3 @@ zle-line-init() {
 zle -N zle-line-init
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-source /usr/share/nvm/init-nvm.sh
