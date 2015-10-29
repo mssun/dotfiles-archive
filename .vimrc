@@ -100,7 +100,7 @@ NeoBundle 'Shougo/vimproc', {
       \ }
 NeoBundle 'bling/vim-airline'
 NeoBundle 'scrooloose/syntastic'
-NeoBundle 'Rip-Rip/clang_complete'
+" NeoBundle 'Rip-Rip/clang_complete'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
@@ -112,6 +112,7 @@ NeoBundle 'vim-scripts/matchit.zip'
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'beloglazov/vim-online-thesaurus'
+NeoBundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 " NeoBundle 'davidhalter/jedi-vim'
 " NeoBundle 'kshenoy/vim-signature'
 " NeoBundle 'taglist.vim'
@@ -880,28 +881,28 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
 endif
 "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
-endif
-let g:neocomplete#force_overwrite_completefunc = 1
-let g:neocomplete#force_omni_input_patterns.c =
-      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-let g:neocomplete#force_omni_input_patterns.cpp =
-      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-let g:neocomplete#force_omni_input_patterns.objc =
-      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-let g:neocomplete#force_omni_input_patterns.objcpp =
-      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-let g:clang_complete_auto = 0
-let g:clang_auto_select = 0
-"let g:clang_use_library = 1
+" if !exists('g:neocomplete#force_omni_input_patterns')
+"   let g:neocomplete#force_omni_input_patterns = {}
+" endif
+" let g:neocomplete#force_overwrite_completefunc = 1
+" let g:neocomplete#force_omni_input_patterns.c =
+"       \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+" let g:neocomplete#force_omni_input_patterns.cpp =
+"       \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+" let g:neocomplete#force_omni_input_patterns.objc =
+"       \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+" let g:neocomplete#force_omni_input_patterns.objcpp =
+"       \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+" let g:clang_complete_auto = 0
+" let g:clang_auto_select = 0
+" let g:clang_use_library = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

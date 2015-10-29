@@ -102,7 +102,7 @@ if [[ `uname` == "Linux" ]]; then
     export ftp_proxy=$http_proxy
     export rsync_proxy=$http_proxy
     export socks_proxy=socks.cse.cuhk.edu.hk:1080
-    export no_proxy="localhost,127.0.0.0/8,127.0.1.1,127.0.1.1*,local.home, 137.189.0.0/16, 192.168.0.0/16"
+    export no_proxy="127.0.0.1,localhost,127.0.0.0/8,127.0.1.1,127.0.1.1*,local.home, 137.189.0.0/16, 192.168.0.0/16"
 fi
 
 export BROWSER=google-chrome-stable
@@ -138,3 +138,4 @@ zle-line-init() {
 zle -N zle-line-init
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+source /usr/share/nvm/init-nvm.sh
