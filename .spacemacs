@@ -23,7 +23,9 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     auto-completion
+     (auto-completion :variables
+                      auto-completion-enable-sort-by-usage t
+                      auto-completion-enable-snippets-in-popup t)
      better-defaults
      emacs-lisp
      git
@@ -45,6 +47,8 @@ values."
      eyebrowse
      chinese
      html
+     semantic
+     ycmd
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -236,6 +240,8 @@ layers configuration. You are free to put any user code."
                     (font-spec :family "Source Code Pro"))
   (setq org-bullets-bullet-list '("◉" "○" "✸" "•"))
   (setq markdown-command "/usr/bin/pandoc")
+  (when (spacemacs/system-is-linux)
+    (set-variable 'ycmd-server-command '("python" "/usr/share/vim/vimfiles/third_party/ycmd/ycmd")))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
