@@ -240,8 +240,7 @@ layers configuration. You are free to put any user code."
                     (font-spec :family "Source Code Pro"))
   (setq org-bullets-bullet-list '("◉" "○" "✸" "•"))
   (setq markdown-command "/usr/bin/pandoc")
-  (when (spacemacs/system-is-linux)
-    (set-variable 'ycmd-server-command '("python" "/usr/share/vim/vimfiles/third_party/ycmd/ycmd")))
+  (set-variable 'ycmd-server-command '("python2" "/home/mssun/program/ycmd/ycmd"))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will

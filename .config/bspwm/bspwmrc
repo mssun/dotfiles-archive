@@ -22,5 +22,6 @@ bspc rule -a VirtualBox floating=on
 bspc rule -a Pidgin floating=on
 bspc rule -a Skype floating=on
 bspc rule -a Dia floating=on
+bspc rule -a crx_nckgahadagoaajjgafhacjanaoiihapd  floating=on
 
 panel &
