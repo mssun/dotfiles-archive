@@ -24,6 +24,7 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      (auto-completion :variables
+                      auto-completion-enable-help-tooltip t
                       auto-completion-enable-sort-by-usage t
                       auto-completion-enable-snippets-in-popup t)
      better-defaults
@@ -243,6 +244,8 @@ layers configuration. You are free to put any user code."
   (cond
    ((spacemacs/system-is-linux) (set-variable 'ycmd-server-command '("python2" "/home/mssun/program/ycmd/ycmd")))
    ((spacemacs/system-is-mac) (set-variable 'ycmd-server-command '("python2" "/Users/mssun/Documents/github/ycmd/ycmd"))))
+  (setq company-idle-delay 0)
+  (setq ac-delay 0)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
