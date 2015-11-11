@@ -25,8 +25,8 @@ values."
      ;; ----------------------------------------------------------------
      (auto-completion :variables
                       auto-completion-enable-help-tooltip t
-                      auto-completion-enable-sort-by-usage t
-                      auto-completion-enable-snippets-in-popup t)
+                      auto-completion-enable-sort-by-usage t)
+                      ;; auto-completion-enable-snippets-in-popup t)
      better-defaults
      emacs-lisp
      git
@@ -50,6 +50,7 @@ values."
      html
      semantic
      ycmd
+     chrome
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -226,7 +227,8 @@ layers configuration. You are free to put any user code."
    ((spacemacs/system-is-linux) (setq TeX-view-program-selection '((output-pdf "Okular")))))
   (setq TeX-view-program-list
         '(("Okular" "okular --unique %o#src:%n%b")
-          ("Skim" "displayline -b -g %n %o %b")))
+          ("Skim" "displayline -b -g %n %o %b")
+          ("Zathura" "zathura-sync.sh %n:1:%b %o")))
   (when (spacemacs/system-is-linux)
     (setq browse-url-browser-function 'browse-url-generic
           browse-url-generic-program "google-chrome-stable"))
