@@ -41,7 +41,7 @@ values."
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
      python
-     latex
+     (latex :variables latex-build-command "LaTeX")
      markdown
      search-engine
      shell
