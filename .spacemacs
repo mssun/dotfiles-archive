@@ -223,6 +223,18 @@ layers configuration. You are free to put any user code."
         `(("." . ,(concat spacemacs-cache-directory "undo"))))
   (unless (file-exists-p (concat spacemacs-cache-directory "undo"))
     (make-directory (concat spacemacs-cache-directory "undo")))
+  (when (spacemacs/system-is-linux)
+    (setq browse-url-browser-function 'browse-url-generic
+          browse-url-generic-program "google-chrome-stable"))
+  (setq vc-follow-symlinks t)
+  (setq ad-redefinition-action 'accept)
+  (cond
+   ((spacemacs/system-is-mac) (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16))
+   ((spacemacs/system-is-linux) (spacemacs//set-monospaced-font "Source Code Pro" "Source Han Sans CN" 14 16)))
+  (set-fontset-font (frame-parameter nil 'font) 'symbol
+                    (font-spec :family "Source Code Pro"))
+
+  ;; latex
   (setq TeX-source-correlate-mode t)
   (setq TeX-source-correlate-start-server t)
   (setq TeX-source-correlate-method 'synctex)
@@ -233,30 +245,31 @@ layers configuration. You are free to put any user code."
         '(("Okular" "okular --unique %o#src:%n`pwd`/./%b")
           ("Skim" "displayline -b -g %n %o %b")
           ("Zathura" "zathura-sync.sh %n:1:%b %o")))
-  (when (spacemacs/system-is-linux)
-    (setq browse-url-browser-function 'browse-url-generic
-          browse-url-generic-program "google-chrome-stable"))
   (setq-default TeX-master "paper")
-  (setq vc-follow-symlinks t)
-  (setq ad-redefinition-action 'accept)
+  (evil-leader/set-key-for-mode 'latex-mode
+    "mB" (progn 'save-buffer 'latex/build))
+
+  ;; org
   (setq org-agenda-files (list "~/Dropbox/org/tasks.org"))
-  (cond
-   ((spacemacs/system-is-mac) (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16))
-   ((spacemacs/system-is-linux) (spacemacs//set-monospaced-font "Source Code Pro" "Source Han Sans CN" 14 16)))
-  (set-fontset-font (frame-parameter nil 'font) 'symbol
-                    (font-spec :family "Source Code Pro"))
   (setq org-bullets-bullet-list '("◉" "○" "✸" "•"))
   (setq markdown-command "/usr/bin/pandoc")
+
+  ;; ycmd
   (cond
    ((spacemacs/system-is-linux) (set-variable 'ycmd-server-command '("python2" "/home/mssun/program/ycmd/ycmd")))
    ((spacemacs/system-is-mac) (set-variable 'ycmd-server-command '("python2" "/Users/mssun/Documents/github/ycmd/ycmd"))))
+
+  ;; auto-completion
   (setq company-idle-delay 0)
   (setq ac-delay 0)
-  (evil-leader/set-key-for-mode 'latex-mode
-    "mB" (progn 'save-buffer 'latex/build))
-  (setq calendar-location-name "Hong Kong, HK"
+
+  ;; geolocation
+  (setq calendar-location-name "Hong Kong"
         calendar-latitude 114.16
         calendar-longitude 22.29)
+  (setq sunshine-location "Hong Kong")
+  (setq sunshine-units 'metric)
+  (setq sunshine-appid "76b417c6166b3460614b5c8dcf755d30")
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
