@@ -226,7 +226,7 @@ layers configuration. You are free to put any user code."
    ((spacemacs/system-is-mac) (setq TeX-view-program-selection '((output-pdf "Skim"))))
    ((spacemacs/system-is-linux) (setq TeX-view-program-selection '((output-pdf "Okular")))))
   (setq TeX-view-program-list
-        '(("Okular" "okular --unique %o#src:%n%b")
+        '(("Okular" "okular --unique %o#src:%n`pwd`/./%b")
           ("Skim" "displayline -b -g %n %o %b")
           ("Zathura" "zathura-sync.sh %n:1:%b %o")))
   (when (spacemacs/system-is-linux)
@@ -248,6 +248,8 @@ layers configuration. You are free to put any user code."
    ((spacemacs/system-is-mac) (set-variable 'ycmd-server-command '("python2" "/Users/mssun/Documents/github/ycmd/ycmd"))))
   (setq company-idle-delay 0)
   (setq ac-delay 0)
+  (evil-leader/set-key-for-mode 'latex-mode
+    "mB" (progn 'save-buffer 'latex/build))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
