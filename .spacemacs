@@ -28,29 +28,30 @@ values."
                       auto-completion-enable-sort-by-usage t)
                       ;; auto-completion-enable-snippets-in-popup t)
      better-defaults
-     emacs-lisp
-     git
-     org
-     syntax-checking
-     spell-checking
-     version-control
-     gtags
-     colors
-     osx
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
-     python
-     (latex :variables latex-build-command "LaTeX")
-     markdown
-     search-engine
-     shell
-     eyebrowse
      chinese
-     html
-     semantic
-     ycmd
      chrome
+     colors
+     emacs-lisp
+     eyebrowse
+     git
+     gtags
+     html
+     (latex :variables
+            latex-build-command "LaTeX")
+     markdown
+     org
+     osx
+     python
+     search-engine
+     semantic
+     shell
+     spell-checking
+     syntax-checking
+     version-control
+     ycmd
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
