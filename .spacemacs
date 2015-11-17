@@ -36,7 +36,10 @@ values."
      colors
      emacs-lisp
      eyebrowse
+     (geolocation :variables
+                  geolocation-enable-weather-forecast t)
      git
+     github
      gtags
      html
      (latex :variables
@@ -251,6 +254,9 @@ layers configuration. You are free to put any user code."
   (setq ac-delay 0)
   (evil-leader/set-key-for-mode 'latex-mode
     "mB" (progn 'save-buffer 'latex/build))
+  (setq calendar-location-name "Hong Kong, HK"
+        calendar-latitude 114.16
+        calendar-longitude 22.29)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
