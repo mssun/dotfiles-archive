@@ -36,7 +36,6 @@ values."
      colors
      deft
      emacs-lisp
-     eyebrowse
      (geolocation :variables
                   geolocation-enable-weather-forecast t)
      git

@@ -59,11 +59,13 @@ if [[ `uname` == "Linux" ]]; then
   export PATH="/home/mssun/.config/panel:$PATH"
   source /usr/share/zsh/scripts/zgen/zgen.zsh
   source /usr/share/nvm/init-nvm.sh
+  export PATH="/home/mssun/program/miniconda3/bin:$PATH"
 else
   export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:$PATH"
   source ~/.zgen/zgen.zsh
 #  [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 fi
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 # export MANPATH="/usr/local/man:$MANPATH"
 
 
@@ -138,4 +140,3 @@ zle-line-init() {
 }
 zle -N zle-line-init
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
