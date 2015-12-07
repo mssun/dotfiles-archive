@@ -256,8 +256,10 @@ layers configuration. You are free to put any user code."
   (setq vc-follow-symlinks t)
   (setq ad-redefinition-action 'accept)
   (cond
-   ((spacemacs/system-is-mac) (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16))
-   ((spacemacs/system-is-linux) (spacemacs//set-monospaced-font "Source Code Pro" "Source Han Sans CN" 14 16)))
+   ((spacemacs/system-is-mac)
+    (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16))
+   ((spacemacs/system-is-linux)
+    (spacemacs//set-monospaced-font "Source Code Pro" "Source Han Sans CN" 14 16)))
   (set-fontset-font (frame-parameter nil 'font) 'symbol
                     (font-spec :family "Source Code Pro"))
 
@@ -266,8 +268,10 @@ layers configuration. You are free to put any user code."
   (setq TeX-source-correlate-start-server t)
   (setq TeX-source-correlate-method 'synctex)
   (cond
-   ((spacemacs/system-is-mac) (setq TeX-view-program-selection '((output-pdf "Skim"))))
-   ((spacemacs/system-is-linux) (setq TeX-view-program-selection '((output-pdf "Zathura")))))
+   ((spacemacs/system-is-mac)
+    (setq TeX-view-program-selection '((output-pdf "Skim"))))
+   ((spacemacs/system-is-linux)
+    (setq TeX-view-program-selection '((output-pdf "Zathura")))))
   (setq TeX-view-program-list
         '(("Okular" "okular --unique %o#src:%n`pwd`/./%b")
           ("Skim" "displayline -b -g %n %o %b")
@@ -284,8 +288,10 @@ layers configuration. You are free to put any user code."
 
   ;; ycmd
   (cond
-   ((spacemacs/system-is-linux) (set-variable 'ycmd-server-command '("python2" "/home/mssun/program/ycmd/ycmd")))
-   ((spacemacs/system-is-mac) (set-variable 'ycmd-server-command '("python2" "/Users/mssun/Documents/github/ycmd/ycmd"))))
+   ((spacemacs/system-is-linux)
+    (set-variable 'ycmd-server-command '("python2" "~/program/ycmd/ycmd")))
+   ((spacemacs/system-is-mac)
+    (set-variable 'ycmd-server-command '("python2" "~/Documents/github/ycmd/ycmd"))))
 
   ;; auto-completion
   (setq company-idle-delay 0)
