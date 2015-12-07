@@ -7,7 +7,8 @@
 
 PANEL_FIFO="$HOME/.config/bspwm/panfifo"
 PANEL_HEIGHT="16"
-PANEL_FONT_FAMILY="-*-terminus-medium-r-normal-*-12-*-*-*-c-*-*-1"
+PANEL_FONT="-*-terminus-medium-r-normal-*-12-*-*-*-c-*-*-1"
+# PANEL_FONT="Source Sans Pro Regular:size=10"
 
 # From panel_colors file
 
@@ -219,7 +220,7 @@ function panel_bar {
 
 # Actually invoking the panel and piping to bar
 
-panel_bar | lemonbar -g x$PANEL_HEIGHT -f "$PANEL_FONT_FAMILY" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" &
+panel_bar | lemonbar -g x$PANEL_HEIGHT -f "$PANEL_FONT" -F "$COLOR_FOREGROUND" -B "$COLOR_BACKGROUND" &
 
 # Hostname tweaks, including forcing stalonetray into a reasonable place, and
 # starting the battery monitor on my laptop

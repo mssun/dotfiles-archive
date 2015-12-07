@@ -52,20 +52,20 @@ plugins=(git osx)
 # User configuration
 
 source $ZSH/oh-my-zsh.sh
-if [[ `uname` == "Linux" ]]; then
-  export PATH="/home/mssun/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$(ruby -e 'print Gem.user_dir')/bin:$PATH"
-  export ANDROID_NDK_HOME=/opt/android-ndk
-  export PATH="$ANDROID_NDK_HOME:$ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
-  export PATH="/home/mssun/.config/panel:$PATH"
-  source /usr/share/zsh/scripts/zgen/zgen.zsh
-  source /usr/share/nvm/init-nvm.sh
-  export PATH="/home/mssun/program/miniconda3/bin:$PATH"
-else
-  export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:$PATH"
-  source ~/.zgen/zgen.zsh
-#  [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
-fi
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# if [[ `uname` == "Linux" ]]; then
+#   export PATH="/home/mssun/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+#   export ANDROID_NDK_HOME=/opt/android-ndk
+#   export PATH="$ANDROID_NDK_HOME:$ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
+#   export PATH="/home/mssun/.config/panel:$PATH"
+#   source /usr/share/zsh/scripts/zgen/zgen.zsh
+#   source /usr/share/nvm/init-nvm.sh
+#   export PATH="/home/mssun/program/miniconda3/bin:$PATH"
+# else
+#   export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:$PATH"
+#   source ~/.zgen/zgen.zsh
+# #  [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+# fi
+# export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 # export MANPATH="/usr/local/man:$MANPATH"
 
 
@@ -140,3 +140,6 @@ zle-line-init() {
 }
 zle -N zle-line-init
 
+
+# added by travis gem
+[ -f /home/mssun/.travis/travis.sh ] && source /home/mssun/.travis/travis.sh
