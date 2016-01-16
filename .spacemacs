@@ -31,10 +31,14 @@ values."
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
-     chinese
+     (chinese :variables
+              chinese-enable-fcitx t)
      chrome
      colors
      deft
+     (elfeed :variables
+             ;; elfeed-enable-web-interface t
+             rmh-elfeed-org-files (list "~/Dropbox/org/elfeed.org"))
      emacs-lisp
      (geolocation :variables
                   geolocation-enable-weather-forecast t)
@@ -54,12 +58,14 @@ values."
      spacemacs-layouts
      spell-checking
      syntax-checking
+     swift
+     ;; twitter
      version-control
-     ycmd
+     ;; ycmd
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
-   ;; packages then consider to create a layer, you can also put the
+   ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '()
    ;; A list of packages and/or extensions that will not be install and loaded.
@@ -81,8 +87,15 @@ values."
    ;; If non nil ELPA repositories are contacted via HTTPS whenever it's
    ;; possible. Set it to nil if you have no way to use HTTPS in your
    ;; environment, otherwise it is strongly recommended to let it set to t.
+   ;; This variable has no effect if Emacs is launched with the parameter
+   ;; `--insecure' which forces the value of this variable to nil.
    ;; (default t)
    dotspacemacs-elpa-https t
+   ;; Maximum allowed time in seconds to contact an ELPA repository.
+   dotspacemacs-elpa-timeout 5
+   ;; If non nil then spacemacs will check for updates at startup
+   ;; when the current branch is not `develop'. (default t)
+   dotspacemacs-check-for-update t
    ;; One of `vim', `emacs' or `hybrid'. Evil is always enabled but if the
    ;; variable is `emacs' then the `holy-mode' is enabled at startup. `hybrid'
    ;; uses emacs key bindings for vim's insert mode, but otherwise leaves evil
@@ -104,6 +117,8 @@ values."
    ;; Number of recent files to show in the startup buffer. Ignored if
    ;; `dotspacemacs-startup-lists' doesn't include `recents'. (default 5)
    dotspacemacs-startup-recent-list-size 5
+   ;; Default major mode of the scratch buffer (default `text-mode')
+   dotspacemacs-scratch-mode 'text-mode
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
@@ -134,13 +149,21 @@ values."
    ;; Major mode leader key accessible in `emacs state' and `insert state'.
    ;; (default "C-M-m)
    dotspacemacs-major-mode-emacs-leader-key "C-M-m"
-   ;; The command key used for Evil commands (ex-commands) and
-   ;; Emacs commands (M-x).
-   ;; By default the command key is `:' so ex-commands are executed like in Vim
-   ;; with `:' and Emacs commands are executed with `<leader> :'.
-   dotspacemacs-command-key ":"
-   ;; If non nil `Y' is remapped to `y$'. (default t)
-   dotspacemacs-remap-Y-to-y$ t
+   ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
+   ;; (default "SPC")
+   dotspacemacs-emacs-command-key "SPC"
+   ;; These variables control whether separate commands are bound in the GUI to
+   ;; the key pairs C-i, TAB and C-m, RET.
+   ;; Setting it to a non-nil value, allows for separate commands under <C-i>
+   ;; and TAB or <C-m> and RET.
+   ;; In the terminal, these pairs are generally indistinguishable, so this only
+   ;; works in the GUI. (default nil)
+   dotspacemacs-distinguish-gui-tab nil
+   ;; If non nil `Y' is remapped to `y$' in Evil states. (default nil)
+   dotspacemacs-remap-Y-to-y$ nil
+   ;; If non nil, inverse the meaning of `g' in `:substitute' Evil ex-command.
+   ;; (default nil)
+   dotspacemacs-ex-substitute-global nil
    ;; Name of the default layout (default "Default")
    dotspacemacs-default-layout-name "Default"
    ;; If non nil the default layout name is displayed in the mode-line.
@@ -229,16 +252,19 @@ values."
    ;; specified with an installed package.
    ;; Not used for now. (default nil)
    dotspacemacs-default-package-repository nil
-   ;; Delete whitespace while saving buffer. Possible values are `all',
-   ;; `trailing', `changed' or `nil'. Default is `changed' (cleanup whitespace
-   ;; on changed lines) (default 'changed)
-   dotspacemacs-whitespace-cleanup 'changed
+   ;; Delete whitespace while saving buffer. Possible values are `all'
+   ;; to aggressively delete empty line and long sequences of whitespace,
+   ;; `trailing' to delete only the whitespace at end of lines, `changed'to
+   ;; delete only whitespace for changed lines or `nil' to disable cleanup.
+   ;; (default nil)
+   dotspacemacs-whitespace-cleanup nil
    ))
 
 (defun dotspacemacs/user-init ()
   "Initialization function for user code.
-It is called immediately after `dotspacemacs/init'.  You are free to put any
-user code."
+It is called immediately after `dotspacemacs/init'.  You are free to put almost
+any user code here.  The exception is org related code, which should be placed
+in `dotspacemacs/user-config'."
   )
 
 (defun dotspacemacs/user-config ()
@@ -255,13 +281,13 @@ layers configuration. You are free to put any user code."
           browse-url-generic-program "google-chrome-stable"))
   (setq vc-follow-symlinks t)
   (setq ad-redefinition-action 'accept)
-  (cond
-   ((spacemacs/system-is-mac)
-    (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16))
-   ((spacemacs/system-is-linux)
-    (spacemacs//set-monospaced-font "Source Code Pro" "Source Han Sans CN" 14 16)))
-  (set-fontset-font (frame-parameter nil 'font) 'symbol
-                    (font-spec :family "Source Code Pro"))
+  ;; (cond
+  ;;  ((spacemacs/system-is-mac)
+  ;;   (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16))
+  ;;  ((spacemacs/system-is-linux)
+  ;;   (spacemacs//set-monospaced-font "Source Code Pro" "Source Han Sans CN" 14 16)))
+  ;; (set-fontset-font (frame-parameter nil 'font) 'symbol
+  ;;                   (font-spec :family "Source Code Pro"))
 
   ;; latex
   (setq TeX-source-correlate-mode t)
@@ -285,11 +311,13 @@ layers configuration. You are free to put any user code."
   (setq org-bullets-bullet-list '("◉" "○" "✸" "•"))
   (setq markdown-command "/usr/bin/pandoc")
   (setq org-file-apps '(("pdf" . "open %s")))
+  (setq org-latex-pdf-process
+        '("latexmk -xelatex -latexoption=\"-shell-escape -interaction=nonstopmode -synctex=1\" -output-directory=%o %f"))
 
   ;; ycmd
   (cond
    ((spacemacs/system-is-linux)
-    (set-variable 'ycmd-server-command '("python2" "~/program/ycmd/ycmd")))
+    (set-variable 'ycmd-server-command '("python2" "/home/mssun/program/ycmd/ycmd")))
    ((spacemacs/system-is-mac)
     (set-variable 'ycmd-server-command '("python2" "~/Documents/github/ycmd/ycmd"))))
 
@@ -307,6 +335,11 @@ layers configuration. You are free to put any user code."
 
   ;; deft
   (setq deft-directory "~/Dropbox/notes")
+
+  ;; twitter
+  ;; (setq twittering-proxy-use t)
+  ;; (setq twittering-proxy-server "proxy.cse.cuhk.edu.hk")
+  ;; (setq twittering-proxy-port 8000)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
