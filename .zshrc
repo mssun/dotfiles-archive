@@ -95,6 +95,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias pc="proxychains"
 alias vi="vim"
+alias e="emacsclient -t"
 alias rm="rm -i"
 
 export R_LIBS_USER=/home/mssun/.R
