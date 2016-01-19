@@ -5,7 +5,6 @@
 source ~/.zplug/zplug
 
 zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-syntax-highlighting", nice:17
 zplug "tarruda/zsh-autosuggestions", nice:18
 zplug "zsh-users/zsh-history-substring-search", nice:19
 zplug "plugins/extract", from:oh-my-zsh
