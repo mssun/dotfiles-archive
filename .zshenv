@@ -7,8 +7,9 @@ if [[ `uname` == "Linux" ]]; then
   source /usr/share/nvm/init-nvm.sh
   export XDG_CONFIG_HOME="/home/mssun/.config"
 else
-  export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:$PATH"
-  source ~/.zgen/zgen.zsh
+  export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:$PATH"
+  export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
+#   source ~/.zgen/zgen.zsh
 #  [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 fi
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
