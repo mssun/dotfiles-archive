@@ -31,8 +31,7 @@ values."
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
-     (chinese :variables
-              chinese-enable-fcitx t)
+     chinese
      chrome
      colors
      deft
