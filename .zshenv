@@ -3,8 +3,7 @@ if [[ `uname` == "Linux" ]]; then
   export ANDROID_NDK_HOME=/opt/android-ndk
   export PATH="$ANDROID_NDK_HOME:$ANDROID_NDK_HOME/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH"
   export PATH="/home/mssun/.config/panel:$PATH"
-  source /usr/share/zsh/scripts/zgen/zgen.zsh
-  source /usr/share/nvm/init-nvm.sh
+  # source /usr/share/nvm/init-nvm.sh
   export XDG_CONFIG_HOME="/home/mssun/.config"
 else
   export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/texbin:$PATH"

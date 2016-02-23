@@ -5,16 +5,18 @@
 source ~/.zplug/zplug
 
 zplug "b4b4r07/zplug"
+zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-completions"
-zplug "tarruda/zsh-autosuggestions", nice:18
-zplug "zsh-users/zsh-history-substring-search", nice:19
+zplug "zsh-users/zsh-syntax-highlighting"
+
 zplug "plugins/extract", from:oh-my-zsh
 zplug "plugins/autojump", from:oh-my-zsh
 zplug "plugins/git", from:oh-my-zsh, if:"which git"
 zplug "plugins/osx", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
 zplug "plugins/brew", from:oh-my-zsh, if:"[[ $OSTYPE == *darwin* ]]"
+
 zplug "themes/robbyrussell", from:oh-my-zsh
-zplug "zsh-users/zsh-syntax-highlighting", nice:10
+zplug "tarruda/zsh-autosuggestions", of:"zsh-autosuggestions.zsh"
 
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
@@ -24,12 +26,6 @@ if ! zplug check --verbose; then
 fi
 
 zplug load
-
-zle-line-init() {
-    zle autosuggest-start
-}
-
-zle -N zle-line-init
 
 alias vi="nvim"
 alias e="emacsclient -t"
