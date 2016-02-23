@@ -310,6 +310,9 @@ layers configuration. You are free to put any user code."
   (setq org-bullets-bullet-list '("◉" "○" "✸" "•"))
   (setq markdown-command "/usr/bin/pandoc")
   (setq org-file-apps '(("pdf" . "open %s")))
+  (setq org-latex-listings 'minted)
+  (setq org-beamer-outline-frame-options "allowframebreaks=0.9")
+  ;; (setq org-beamer-frame-default-options "allowframebreaks")
   (setq org-latex-pdf-process
         '("latexmk -xelatex -latexoption=\"-shell-escape -interaction=nonstopmode -synctex=1\" -output-directory=%o %f"))
 
