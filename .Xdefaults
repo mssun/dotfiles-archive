@@ -39,9 +39,9 @@ URxvt.scrollStyle:          rxvt
 URxvt.scrollBar:            false
 
 ! Perl extensions
-URxvt.perl-ext-common:      default,matcher
-URxvt.matcher.button:       1
-URxvt.urlLauncher:          google-chrome-stable
+! URxvt.perl-ext-common:      default,matcher
+! URxvt.matcher.button:       1
+! URxvt.urlLauncher:          google-chrome-stable
 
 ! Cursor
 URxvt.cursorBlink:          true
@@ -99,10 +99,10 @@ urxvt*foreground:       #dedede
 URxvt.saveLines:32767
 URxvt.scrollBar: false
  
-URxvt.perl-ext-common: default,matcher
-URxvt.urlLauncher: uzbl-browser
-URxvt.matcher.button: 2
-URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+! URxvt.perl-ext-common: default,matcher
+! URxvt.urlLauncher: uzbl-browser
+! URxvt.matcher.button: 2
+! URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
  
 URxvt*colorUL: #c5f779
 URxvt*underlineColor: #c5f779
@@ -150,14 +150,13 @@ xterm*color14:        #F0E68C
 xterm*color7:         #DDDDDD
 xterm*color15:        #FFFFFF
 
-URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select,fullscreen
+URxvt.perl-ext-common:      default,clipboard
 URxvt.url-select.launcher:  google-chrome-stable
 URxvt.url-select.underline: true
 URxvt.keysym.M-u:           perl:url-select:select_next
 ! URxvt.keysym.M-Escape:      perl:keyboard-select:activate
-URxvt.keysym.M-1:           perl:keyboard-select:activate
-URxvt.keysym.M-s:           perl:keyboard-select:search
+! URxvt.keysym.M-1:           perl:keyboard-select:activate
+! URxvt.keysym.M-s:           perl:keyboard-select:search
 URxvt.keysym.M-v:           perl:clipboard:paste
 URxvt.keysym.M-c:           perl:clipboard:copy
-URxvt.keysym.M-C-v:         perl:clipboard:paste_escaped
-URxvt.keysym.F11: perl:fullscreen:switch
+! URxvt.keysym.M-C-v:         perl:clipboard:paste_escaped
