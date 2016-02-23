@@ -12,11 +12,12 @@ xsetroot -cursor_name left_ptr &
 dunst -config ~/.config/dunst/dunstrc &
 sxhkd &
 dropbox-cli start &
-wmname LG3D &
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 xrandr --dpi 96
 if [ -s ~/.Xmodmap ]; then
     xmodmap ~/.Xmodmap
 fi
+urxvtd -q -f -o &
+wmname LG3D &
 exec bspwm

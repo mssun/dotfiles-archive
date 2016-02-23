@@ -23,6 +23,7 @@ bspc rule -a Pidgin state=floating
 bspc rule -a Skype state=floating
 bspc rule -a Dia state=floating
 bspc rule -a Telegram state=floating
+bspc rule -a nylas state=floating
 bspc rule -a crx_nckgahadagoaajjgafhacjanaoiihapd state=floating follow=on
 
 panel &

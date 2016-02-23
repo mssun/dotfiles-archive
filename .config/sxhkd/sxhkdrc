@@ -78,7 +78,7 @@ super + @button{1-3}
 #
 
 super + Return
-	urxvt
+	urxvtc
 
 super + space
   dmenu_run -nf '#a3a6ab' -nb '#34322e' -h 14
