@@ -151,9 +151,9 @@ xterm*color7:         #DDDDDD
 xterm*color15:        #FFFFFF
 
 URxvt.perl-ext-common:      default,clipboard
-URxvt.url-select.launcher:  google-chrome-stable
-URxvt.url-select.underline: true
-URxvt.keysym.M-u:           perl:url-select:select_next
+! URxvt.url-select.launcher:  google-chrome-stable
+! URxvt.url-select.underline: true
+! URxvt.keysym.M-u:           perl:url-select:select_next
 ! URxvt.keysym.M-Escape:      perl:keyboard-select:activate
 ! URxvt.keysym.M-1:           perl:keyboard-select:activate
 ! URxvt.keysym.M-s:           perl:keyboard-select:search
