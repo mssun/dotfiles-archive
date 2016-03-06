@@ -11,6 +11,9 @@ values."
    ;; `+distribution'. For now available distributions are `spacemacs-base'
    ;; or `spacemacs'. (default 'spacemacs)
    dotspacemacs-distribution 'spacemacs
+   ;; If non-nil layers with lazy install support are lazy installed.
+   ;; (default nil)
+   dotspacemacs-enable-lazy-installation nil
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
    dotspacemacs-configuration-layer-path '()
@@ -39,8 +42,6 @@ values."
              ;; elfeed-enable-web-interface t
              rmh-elfeed-org-files (list "~/Dropbox/org/elfeed.org"))
      emacs-lisp
-     (geolocation :variables
-                  geolocation-enable-weather-forecast t)
      git
      github
      gtags
@@ -48,13 +49,17 @@ values."
      (latex :variables
             latex-build-command "LaTeX")
      markdown
+     ;; (mu4e :variables
+     ;;       mu4e-installation-path "/usr/share/emacs/site-lisp")
      org
      osx
+     pdf-tools
      python
      search-engine
      semantic
      shell
      spacemacs-layouts
+     spacemacs-ivy
      spell-checking
      syntax-checking
      swift
@@ -110,12 +115,12 @@ values."
    ;; If the value is nil then no banner is displayed. (default 'official)
    dotspacemacs-startup-banner 'nil
    ;; List of items to show in the startup buffer. If nil it is disabled.
-   ;; Possible values are: `recents' `bookmarks' `projects'.
+   ;; Possible values are: `recents' `bookmarks' `projects' `agenda' `todos'.
    ;; (default '(recents projects))
    dotspacemacs-startup-lists '(recents projects bookmarks)
    ;; Number of recent files to show in the startup buffer. Ignored if
    ;; `dotspacemacs-startup-lists' doesn't include `recents'. (default 5)
-   dotspacemacs-startup-recent-list-size 5
+   dotspacemacs-startup-recent-list-size 7
    ;; Default major mode of the scratch buffer (default `text-mode')
    dotspacemacs-scratch-mode 'text-mode
    ;; List of themes, the first of the list is loaded when spacemacs starts.
@@ -192,7 +197,7 @@ values."
    dotspacemacs-helm-position 'bottom
    ;; If non nil the paste micro-state is enabled. When enabled pressing `p`
    ;; several times cycle between the kill ring content. (default nil)
-   dotspacemacs-enable-paste-micro-state nil
+   dotspacemacs-enable-paste-transient-state nil
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
    dotspacemacs-which-key-delay 0.4
@@ -223,11 +228,15 @@ values."
    ;; the transparency level of a frame when it's inactive or deselected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
    dotspacemacs-inactive-transparency 90
+   ;; If non nil show the titles of transient states. (default t)
+   dotspacemacs-show-transient-state-title t
+   ;; If non nil show the color guide hint for transient state keys. (default t)
+   dotspacemacs-show-transient-state-color-guide t
    ;; If non nil unicode symbols are displayed in the mode line. (default t)
    dotspacemacs-mode-line-unicode-symbols t
    ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
-   ;; scrolling overrides the default behavior of Emacs which recenters the
-   ;; point when it reaches the top or bottom of the screen. (default t)
+   ;; scrolling overrides the default behavior of Emacs which recenters point
+   ;; when it reaches the top or bottom of the screen. (default t)
    dotspacemacs-smooth-scrolling t
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
    ;; derivatives. If set to `relative', also turns on relative line numbers.
@@ -236,6 +245,10 @@ values."
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
+   ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
+   ;; over any automatically added closing parenthesis, bracket, quote, etc…
+   ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
+   dotspacemacs-smart-closing-parenthesis nil
    ;; Select a scope to highlight delimiters. Possible values are `any',
    ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
    ;; emphasis the current one). (default 'all)
@@ -292,18 +305,21 @@ layers configuration. You are free to put any user code."
   (setq TeX-source-correlate-mode t)
   (setq TeX-source-correlate-start-server t)
   (setq TeX-source-correlate-method 'synctex)
+  ;; (eval-after-load 'auctex (pdf-tools-install))
   (cond
    ((spacemacs/system-is-mac)
     (setq TeX-view-program-selection '((output-pdf "Skim"))))
    ((spacemacs/system-is-linux)
     (setq TeX-view-program-selection '((output-pdf "Zathura")))))
+    ;; (setq TeX-view-program-selection '((output-pdf "PDF Tools")))))
   (setq TeX-view-program-list
         '(("Okular" "okular --unique %o#src:%n`pwd`/./%b")
           ("Skim" "displayline -b -g %n %o %b")
-          ("Zathura" "zathura-sync.sh %n:1:%b %o")))
+          ("Zathura"
+           ("zathura %o"
+            (mode-io-correlate
+             " --synctex-forward %n:0:%b -x \"emacsclient +%{line} %{input}\"")))))
   (setq-default TeX-master "paper")
-  (evil-leader/set-key-for-mode 'latex-mode
-    "mB" (progn 'save-buffer 'latex/build))
 
   ;; org
   (setq org-agenda-files (list "~/Dropbox/org/tasks.org"))
@@ -327,21 +343,8 @@ layers configuration. You are free to put any user code."
   (setq company-idle-delay 0)
   (setq ac-delay 0)
 
-  ;; geolocation
-  (setq calendar-location-name "Hong Kong"
-        calendar-latitude 114.16
-        calendar-longitude 22.29)
-  (setq sunshine-location "Hong Kong")
-  (setq sunshine-units 'metric)
-  (setq sunshine-appid "76b417c6166b3460614b5c8dcf755d30")
-
   ;; deft
   (setq deft-directory "~/Dropbox/notes")
-
-  ;; twitter
-  ;; (setq twittering-proxy-use t)
-  ;; (setq twittering-proxy-server "proxy.cse.cuhk.edu.hk")
-  ;; (setq twittering-proxy-port 8000)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
