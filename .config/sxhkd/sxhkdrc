@@ -91,7 +91,7 @@ ctrl + alt + l
     i3lock -d -c 000000
 
 super + Print
-    escrotum -s
+    escrotum -s '/home/mssun/Screenshots/%Y-%m-%d_$wx$h_escrotum.png'
 
 Print
     escrotum
