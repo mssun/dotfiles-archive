@@ -48,13 +48,19 @@ values."
      html
      (latex :variables
             latex-build-command "LaTeX")
+     jabber
      markdown
-     ;; (mu4e :variables
-     ;;       mu4e-installation-path "/usr/share/emacs/site-lisp")
+     (mu4e :variables
+           mu4e-enable-mode-line t
+           mu4e-enable-notifications t
+           mu4e-installation-path "/usr/share/emacs/site-lisp")
      org
      osx
      pdf-tools
      python
+     (ranger :variables
+             ranger-cleanup-on-disable t
+             ranger-show-preview t)
      search-engine
      semantic
      shell
@@ -302,16 +308,16 @@ layers configuration. You are free to put any user code."
   ;;                   (font-spec :family "Source Code Pro"))
 
   ;; latex
-  (setq TeX-source-correlate-mode t)
-  (setq TeX-source-correlate-start-server t)
-  (setq TeX-source-correlate-method 'synctex)
+  (setq TeX-source-correlate-mode t
+        TeX-source-correlate-start-server t
+        TeX-source-correlate-method 'synctex)
   ;; (eval-after-load 'auctex (pdf-tools-install))
   (cond
    ((spacemacs/system-is-mac)
     (setq TeX-view-program-selection '((output-pdf "Skim"))))
    ((spacemacs/system-is-linux)
-    (setq TeX-view-program-selection '((output-pdf "Zathura")))))
-    ;; (setq TeX-view-program-selection '((output-pdf "PDF Tools")))))
+    (setq TeX-view-program-selection '((output-pdf "Zathura")
+                                       (output-pdf "PDF Tools")))))
   (setq TeX-view-program-list
         '(("Okular" "okular --unique %o#src:%n`pwd`/./%b")
           ("Skim" "displayline -b -g %n %o %b")
@@ -345,6 +351,84 @@ layers configuration. You are free to put any user code."
 
   ;; deft
   (setq deft-directory "~/Dropbox/notes")
+
+  ;; mu4e
+  (setq mu4e-maildir "~/.mail/gmail"
+        mu4e-sent-folder "/sent"
+        mu4e-drafts-folder "/drafts"
+        mu4e-trash-folder "/trash"
+        mu4e-refile-folder "/archive"
+        mu4e-sent-messages-behavior 'delete
+        mu4e-get-mail-command "offlineimap"
+        mu4e-update-interval 15)
+
+  (setq user-mail-address "mssun@cse.cuhk.edu.hk"
+        user-full-name  "Mingshen Sun"
+        mu4e-compose-signature
+        (concat
+         "Best,\n"
+         "Mingshen\n"))
+
+  (setq message-send-mail-function 'smtpmail-send-it
+        starttls-use-gnutls t
+        smtpmail-stream-type 'starttls
+        smtpmail-default-smtp-server "smtp.gmail.com"
+        smtpmail-smtp-server "smtp.gmail.com"
+        smtpmail-smtp-service 587
+        smtpmail-auth-credentials (expand-file-name "~/.authinfo.gpg"))
+  (setq mu4e-hide-index-messages t)
+  (with-eval-after-load 'mu4e-alert
+    ;; (mu4e-alert-set-default-style 'notifications)) ; For linux
+    (mu4e-alert-set-default-style 'libnotify))  ; Alternative for linux
+    ;; (mu4e-alert-set-default-style 'notifier))   ; For Mac OSX (through the
+	    ; terminal notifier app)
+    ;; (mu4e-alert-set-default-style 'growl))      ; Alternative for Mac OSX
+  (setq mu4e-alert-interesting-mail-query
+        (concat
+         "flag:unread"
+         " AND NOT flag:trashed"
+         " AND NOT maildir:"
+         "\"/archive\""))
+  (setq mu4e-html2text-command "w3m -dump -cols 110 -T text/html")
+  (setq message-kill-buffer-on-exit t)
+
+
+  ;; jabber
+  (setq ssl-program-name "gnutls-cli"
+        ssl-program-arguments '("--insecure" "-p" service host)
+        ssl-certificate-verification-policy 1)
+
+  (load-file "~/.jabber_authinfo.gpg")
+  (setq jabber-alert-presence-message-function (lambda (who oldstatus newstatus statusnext) nil))
+  (setq jabber-roster-line-format " %c %-25n %u %-8s  %s")
+  ;; (setq jabber-show-resources nil)
+  (add-hook 'jabber-alert-message-hooks 'jabber-message-notifications)
+  (add-hook 'jabber-post-connect-hook 'jabber-autoaway-start)
+  (setq jabber-autoaway-methods (list 'jabber-xprintidle-get-idle-time))
+  (setq jabber-auto-reconnect t
+        jabber-history-enable t
+        jabber-use-global-history nil
+        jabber-backlog-number 40
+        jabber-backlog-days 30
+        jabber-show-offline-contacts nil
+        jabber-roster-show-title nil
+        jabber-roster-show-bindings nil
+        jabber-chat-buffer-show-avatar nil)
+  (defun jabber-font-setup ()
+    (set-face-attribute 'jabber-roster-user-online nil :foreground "#4f97d7")
+    (set-face-attribute 'jabber-roster-user-xa nil :slant 'normal :foreground "#9f8766")
+    (set-face-attribute 'jabber-roster-user-dnd nil :slant 'normal :foreground "#9f8766")
+    (set-face-attribute 'jabber-roster-user-away nil :slant 'normal :foreground "#9f8766")
+    (set-face-attribute 'jabber-roster-user-error nil :slant 'normal)
+    (set-face-attribute 'jabber-roster-user-offline nil :slant 'normal :foreground "dark grey")
+
+    (set-face-attribute 'jabber-title-small nil :inherit 'default :width 'normal :foreground "#bc6ec5" :height 'unspecified)
+    (set-face-attribute 'jabber-title-medium nil :inherit 'default :width 'normal :height 'unspecified)
+    (set-face-attribute 'jabber-title-large nil :inherit 'default :width 'normal :height 'unspecified))
+
+  (add-hook 'jabber-roster-mode-hook 'jabber-font-setup)
+  (add-hook 'jabber-chat-mode-hook 'flyspell-mode)
+
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
