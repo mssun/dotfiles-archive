@@ -2,7 +2,8 @@ export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"
 
-compton --config .config/compton/compton.conf -cGb &
+# compton --config .config/compton/compton.conf -cGb &
+compton -cCfz -i 0.5 --backend glx --vsync opengl-swc &
 fcitx-autostart > /dev/null 2>&1 &
 # sogou-autostart > /dev/null 2>&1 &
 
