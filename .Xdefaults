@@ -22,7 +22,7 @@ URxvt.fading:               0
 ! URxvt.urgentOnBell:         true
 ! URxvt.visualBell:           true
 URxvt.loginShell:           true
-URxvt.saveLines:            50
+! URxvt.saveLines:            50
 URxvt.internalBorder:       3
 URxvt.lineSpace:            0
 
@@ -150,7 +150,7 @@ xterm*color14:        #F0E68C
 xterm*color7:         #DDDDDD
 xterm*color15:        #FFFFFF
 
-URxvt.perl-ext-common:      default,clipboard
+URxvt.perl-ext-common:      clipboard
 ! URxvt.url-select.launcher:  google-chrome-stable
 ! URxvt.url-select.underline: true
 ! URxvt.keysym.M-u:           perl:url-select:select_next
