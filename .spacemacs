@@ -106,10 +106,12 @@ values."
    ;; If non nil then spacemacs will check for updates at startup
    ;; when the current branch is not `develop'. (default t)
    dotspacemacs-check-for-update t
-   ;; One of `vim', `emacs' or `hybrid'. Evil is always enabled but if the
-   ;; variable is `emacs' then the `holy-mode' is enabled at startup. `hybrid'
-   ;; uses emacs key bindings for vim's insert mode, but otherwise leaves evil
-   ;; unchanged. (default 'vim)
+   ;; One of `vim', `emacs' or `hybrid'.
+   ;; `hybrid' is like `vim' except that `insert state' is replaced by the
+   ;; `hybrid state' with `emacs' key bindings. The value can also be a list
+   ;; with `:variables' keyword (similar to layers). Check the editing styles
+   ;; section of the documentation for details on available variables.
+   ;; (default 'vim)
    dotspacemacs-editing-style 'vim
    ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
@@ -182,6 +184,10 @@ values."
    ;; If non nil then the last auto saved layouts are resume automatically upon
    ;; start. (default nil)
    dotspacemacs-auto-resume-layouts nil
+   ;; Size (in MB) above which spacemacs will prompt to open the large file
+   ;; literally to avoid performance issues. Opening a file literally means that
+   ;; no major mode or minor modes are active. (default is 1)
+   dotspacemacs-large-file-size 1
    ;; Location where to auto-save files. Possible values are `original' to
    ;; auto-save the file in-place, `cache' to auto-save the file to another
    ;; file stored in the cache directory and `nil' to disable auto-saving.
@@ -189,10 +195,6 @@ values."
    dotspacemacs-auto-save-file-location 'cache
    ;; Maximum number of rollback slots to keep in the cache. (default 5)
    dotspacemacs-max-rollback-slots 5
-   ;; If non nil then `ido' replaces `helm' for some commands. For now only
-   ;; `find-files' (SPC f f), `find-spacemacs-file' (SPC f e s), and
-   ;; `find-contrib-file' (SPC f e c) are replaced. (default nil)
-   dotspacemacs-use-ido nil
    ;; If non nil, `helm' will try to minimize the space it uses. (default nil)
    dotspacemacs-helm-resize nil
    ;; if non nil, the helm header is hidden when there is only one source.
@@ -280,15 +282,20 @@ values."
 
 (defun dotspacemacs/user-init ()
   "Initialization function for user code.
-It is called immediately after `dotspacemacs/init'.  You are free to put almost
-any user code here.  The exception is org related code, which should be placed
-in `dotspacemacs/user-config'."
+It is called immediately after `dotspacemacs/init', before layer configuration
+executes.
+ This function is mostly useful for variables that need to be set
+before packages are loaded. If you are unsure, you should try in setting them in
+`dotspacemacs/user-config' first."
   )
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
-layers configuration. You are free to put any user code."
+layers configuration.
+This is the place where most of your configurations should be done. Unless it is
+explicitly specified that a variable should be set before a package is loaded,
+you should place you code here."
   (setq undo-tree-auto-save-history t
         undo-tree-history-directory-alist
         `(("." . ,(concat spacemacs-cache-directory "undo"))))
@@ -299,13 +306,13 @@ layers configuration. You are free to put any user code."
           browse-url-generic-program "google-chrome-stable"))
   (setq vc-follow-symlinks t)
   (setq ad-redefinition-action 'accept)
-  ;; (cond
-  ;;  ((spacemacs/system-is-mac)
-  ;;   (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16))
-  ;;  ((spacemacs/system-is-linux)
-  ;;   (spacemacs//set-monospaced-font "Source Code Pro" "Source Han Sans CN" 14 16)))
-  ;; (set-fontset-font (frame-parameter nil 'font) 'symbol
-  ;;                   (font-spec :family "Source Code Pro"))
+  (cond
+   ((spacemacs/system-is-mac)
+    (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16))
+   ((spacemacs/system-is-linux)
+    (spacemacs//set-monospaced-font "Source Code Pro" "Source Han Sans CN" 14 16)))
+  (set-fontset-font (frame-parameter nil 'font) 'symbol
+                    (font-spec :family "Input Mono"))
 
   ;; latex
   (setq TeX-source-correlate-mode t
@@ -359,15 +366,26 @@ layers configuration. You are free to put any user code."
         mu4e-trash-folder "/trash"
         mu4e-refile-folder "/archive"
         mu4e-sent-messages-behavior 'delete
-        mu4e-get-mail-command "offlineimap"
-        mu4e-update-interval 15)
-
-  (setq user-mail-address "mssun@cse.cuhk.edu.hk"
+        user-mail-address "mssun@cse.cuhk.edu.hk"
         user-full-name  "Mingshen Sun"
         mu4e-compose-signature
         (concat
          "Best,\n"
          "Mingshen\n"))
+  (setq mu4e-show-images t
+        mu4e-view-show-images t
+        mu4e-headers-attach-mark '("a" . "")
+        mu4e-headers-seen-mark  '("S" . "✔")
+        mu4e-headers-passed-mark  '("P" . "→")
+        mu4e-headers-replied-mark '("R" . "←")
+        mu4e-headers-encrypted-mark '("x" . "⚷")
+        mu4e-headers-default-prefix   '("|" . "┃")
+        mu4e-headers-first-child-prefix  '("\\" . "↳")
+        mu4e-use-fancy-chars nil
+        mu4e-get-mail-command "offlineimap"
+        mu4e-update-interval 30)
+  (when (fboundp 'imagemagick-register-types)
+    (imagemagick-register-types))
 
   (setq message-send-mail-function 'smtpmail-send-it
         starttls-use-gnutls t
@@ -387,9 +405,11 @@ layers configuration. You are free to put any user code."
         (concat
          "flag:unread"
          " AND NOT flag:trashed"
-         " AND NOT maildir:"
-         "\"/archive\""))
+         " AND maildir:"
+         "\"/INBOX\""))
   (setq mu4e-html2text-command "w3m -dump -cols 110 -T text/html")
+  ;; (require 'mu4e-contrib)
+  ;; (setq mu4e-html2text-command 'mu4e-shr2text) 
   (setq message-kill-buffer-on-exit t)
 
 
@@ -397,11 +417,15 @@ layers configuration. You are free to put any user code."
   (setq ssl-program-name "gnutls-cli"
         ssl-program-arguments '("--insecure" "-p" service host)
         ssl-certificate-verification-policy 1)
-
-  (load-file "~/.jabber_authinfo.gpg")
+  (require 'netrc)
+  (setq cred (netrc-machine (netrc-parse "~/.authinfo.gpg") "talk.google.com"))
+  (setq jabber-account-list `((,(netrc-get cred "login")
+                               (:password . ,(netrc-get cred "password"))
+                               (:network-server . "talk.google.com")
+                               (:port . 443)
+                               (:connection-type . ssl))))
   (setq jabber-alert-presence-message-function (lambda (who oldstatus newstatus statusnext) nil))
   (setq jabber-roster-line-format " %c %-25n %u %-8s  %s")
-  ;; (setq jabber-show-resources nil)
   (add-hook 'jabber-alert-message-hooks 'jabber-message-notifications)
   (add-hook 'jabber-post-connect-hook 'jabber-autoaway-start)
   (setq jabber-autoaway-methods (list 'jabber-xprintidle-get-idle-time))
@@ -410,14 +434,21 @@ layers configuration. You are free to put any user code."
         jabber-use-global-history nil
         jabber-backlog-number 40
         jabber-backlog-days 30
+        jabber-show-resources 'sometimes
         jabber-show-offline-contacts nil
         jabber-roster-show-title nil
         jabber-roster-show-bindings nil
-        jabber-chat-buffer-show-avatar nil)
+        jabber-chat-buffer-show-avatar nil
+        jabber-autoaway-timeout 5
+        jabber-autoaway-xa-timeout 10
+        jabber-roster-buffer "*-jabber-*"
+        jabber-chat-buffer-format "*-jabber-%n-*")
+  (setq jabber-roster-sort-functions (quote (jabber-roster-sort-by-status jabber-roster-sort-by-displayname jabber-roster-sort-by-group)))
+
   (defun jabber-font-setup ()
     (set-face-attribute 'jabber-roster-user-online nil :foreground "#4f97d7")
     (set-face-attribute 'jabber-roster-user-xa nil :slant 'normal :foreground "#9f8766")
-    (set-face-attribute 'jabber-roster-user-dnd nil :slant 'normal :foreground "#9f8766")
+    (set-face-attribute 'jabber-roster-user-dnd nil :slant 'normal :foreground "#ce537a")
     (set-face-attribute 'jabber-roster-user-away nil :slant 'normal :foreground "#9f8766")
     (set-face-attribute 'jabber-roster-user-error nil :slant 'normal)
     (set-face-attribute 'jabber-roster-user-offline nil :slant 'normal :foreground "dark grey")
