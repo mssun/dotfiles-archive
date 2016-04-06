@@ -11,9 +11,20 @@ values."
    ;; `+distribution'. For now available distributions are `spacemacs-base'
    ;; or `spacemacs'. (default 'spacemacs)
    dotspacemacs-distribution 'spacemacs
+   ;; Lazy installation of layers (i.e. layers are installed only when a file
+   ;; with a supported type is opened). Possible values are `all', `unused'
+   ;; and `nil'. `unused' will lazy install only unused layers (i.e. layers
+   ;; not listed in variable `dotspacemacs-configuration-layers'), `all' will
+   ;; lazy install any layer that support lazy installation even the layers
+   ;; listed in `dotspacemacs-configuration-layers'. `nil' disable the lazy
+   ;; installation feature and you have to explicitly list a layer in the
+   ;; variable `dotspacemacs-configuration-layers' to install it.
+   ;; (default 'unused)
+   dotspacemacs-enable-lazy-installation 'unused
+   ;; If non-nil then Spacemacs will ask for confirmation before installing
+   ;; a layer lazily. (default t)
+   dotspacemacs-ask-for-lazy-installation t
    ;; If non-nil layers with lazy install support are lazy installed.
-   ;; (default nil)
-   dotspacemacs-enable-lazy-installation nil
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
    dotspacemacs-configuration-layer-path '()
@@ -27,9 +38,11 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      (auto-completion :variables
+                      auto-completion-return-key-behavior 'complete
+                      auto-completion-tab-key-behavior 'cycle
                       auto-completion-enable-help-tooltip t
-                      auto-completion-enable-sort-by-usage t)
-                      ;; auto-completion-enable-snippets-in-popup t)
+                      auto-completion-enable-sort-by-usage t
+                      auto-completion-enable-snippets-in-popup t)
      better-defaults
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
@@ -37,6 +50,7 @@ values."
      chinese
      chrome
      colors
+     dash
      deft
      (elfeed :variables
              ;; elfeed-enable-web-interface t
@@ -64,14 +78,13 @@ values."
      search-engine
      semantic
      shell
-     spacemacs-layouts
-     spacemacs-ivy
+     spacemacs-helm
      spell-checking
      syntax-checking
      swift
      ;; twitter
      version-control
-     ;; ycmd
+     ycmd
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -125,7 +138,7 @@ values."
    ;; List of items to show in the startup buffer. If nil it is disabled.
    ;; Possible values are: `recents' `bookmarks' `projects' `agenda' `todos'.
    ;; (default '(recents projects))
-   dotspacemacs-startup-lists '(recents projects bookmarks)
+   dotspacemacs-startup-lists '(recents projects)
    ;; Number of recent files to show in the startup buffer. Ignored if
    ;; `dotspacemacs-startup-lists' doesn't include `recents'. (default 5)
    dotspacemacs-startup-recent-list-size 7
@@ -135,21 +148,21 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(spacemacs-dark
-                         spacemacs-light
-                         solarized-light
-                         solarized-dark
-                         leuven
-                         monokai
-                         zenburn)
+                         spacemacs-light)
+                         ;; solarized-light
+                         ;; solarized-dark
+                         ;; leuven
+                         ;; monokai
+                         ;; zenburn)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 14
+                               :size 15
                                :weight normal
                                :width normal
-                               :powerline-scale 1.3)
+                               :powerline-scale 1.2)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The leader key accessible in `emacs state' and `insert state'
@@ -175,7 +188,7 @@ values."
    dotspacemacs-remap-Y-to-y$ nil
    ;; If non nil, inverse the meaning of `g' in `:substitute' Evil ex-command.
    ;; (default nil)
-   dotspacemacs-ex-substitute-global nil
+   dotspacemacs-ex-substitute-global t
    ;; Name of the default layout (default "Default")
    dotspacemacs-default-layout-name "Default"
    ;; If non nil the default layout name is displayed in the mode-line.
@@ -183,7 +196,7 @@ values."
    dotspacemacs-display-default-layout nil
    ;; If non nil then the last auto saved layouts are resume automatically upon
    ;; start. (default nil)
-   dotspacemacs-auto-resume-layouts nil
+   dotspacemacs-auto-resume-layouts t
    ;; Size (in MB) above which spacemacs will prompt to open the large file
    ;; literally to avoid performance issues. Opening a file literally means that
    ;; no major mode or minor modes are active. (default is 1)
@@ -306,13 +319,15 @@ you should place you code here."
           browse-url-generic-program "google-chrome-stable"))
   (setq vc-follow-symlinks t)
   (setq ad-redefinition-action 'accept)
-  (cond
-   ((spacemacs/system-is-mac)
-    (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 14 16))
-   ((spacemacs/system-is-linux)
-    (spacemacs//set-monospaced-font "Source Code Pro" "Source Han Sans CN" 14 16)))
-  (set-fontset-font (frame-parameter nil 'font) 'symbol
-                    (font-spec :family "Input Mono"))
+  (if (display-graphic-p)
+      (progn
+        (cond
+         ((spacemacs/system-is-mac)
+          (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 15 16))
+         ((spacemacs/system-is-linux)
+          (spacemacs//set-monospaced-font "Source Code Pro" "Source Han Sans CN" 15 16)))
+        (set-fontset-font (frame-parameter nil 'font) 'symbol
+                          (font-spec :family "Input Mono"))))
 
   ;; latex
   (setq TeX-source-correlate-mode t
@@ -348,13 +363,14 @@ you should place you code here."
   ;; ycmd
   (cond
    ((spacemacs/system-is-linux)
-    (set-variable 'ycmd-server-command '("python2" "/home/mssun/program/ycmd/ycmd")))
+    (set-variable 'ycmd-server-command '("python3" "/home/mssun/program/ycmd/ycmd")))
    ((spacemacs/system-is-mac)
-    (set-variable 'ycmd-server-command '("python2" "~/Documents/github/ycmd/ycmd"))))
+    (set-variable 'ycmd-server-command '("python3" "~/Documents/github/ycmd/ycmd"))))
+  (setq ycmd-request-message-level -1)
 
   ;; auto-completion
   (setq company-idle-delay 0)
-  (setq ac-delay 0)
+  ;; (setq ac-delay 0)
 
   ;; deft
   (setq deft-directory "~/Dropbox/notes")
@@ -409,7 +425,7 @@ you should place you code here."
          "\"/INBOX\""))
   (setq mu4e-html2text-command "w3m -dump -cols 110 -T text/html")
   ;; (require 'mu4e-contrib)
-  ;; (setq mu4e-html2text-command 'mu4e-shr2text) 
+  ;; (setq mu4e-html2text-command 'mu4e-shr2text)
   (setq message-kill-buffer-on-exit t)
 
 
@@ -444,6 +460,7 @@ you should place you code here."
         jabber-roster-buffer "*-jabber-*"
         jabber-chat-buffer-format "*-jabber-%n-*")
   (setq jabber-roster-sort-functions (quote (jabber-roster-sort-by-status jabber-roster-sort-by-displayname jabber-roster-sort-by-group)))
+  (setq fsm-debug nil)
 
   (defun jabber-font-setup ()
     (set-face-attribute 'jabber-roster-user-online nil :foreground "#4f97d7")
