@@ -35,4 +35,4 @@ zplug load
 
 alias vi="nvim"
 alias e="emacsclient -t"
-alias em="emacsclient"
+alias em="emacsclient -c"
