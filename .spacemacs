@@ -477,6 +477,11 @@ you should place you code here."
   (add-hook 'jabber-roster-mode-hook 'jabber-font-setup)
   (add-hook 'jabber-chat-mode-hook 'flyspell-mode)
 
+  (add-hook 'c++-mode-hook (lambda ()
+                             (setq flycheck-checker 'c/c++-gcc)
+                             (setq flycheck-gcc-language-standard "c++11")
+                             (setq flycheck-clang-language-standard "c++11")))
+
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
