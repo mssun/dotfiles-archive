@@ -56,12 +56,14 @@ values."
              ;; elfeed-enable-web-interface t
              rmh-elfeed-org-files (list "~/Dropbox/org/elfeed.org"))
      emacs-lisp
+     emoji
      git
      github
      gtags
      html
      (latex :variables
             latex-build-command "LaTeX")
+     imenu-list
      jabber
      markdown
      (mu4e :variables
