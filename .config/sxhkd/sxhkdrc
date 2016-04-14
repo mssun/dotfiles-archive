@@ -88,7 +88,9 @@ super + Escape
 	pkill -USR1 -x sxhkd
 
 ctrl + alt + l
-    i3lock -d -c 000000
+    i3l
+super + e
+	emacsclient -c
 
 super + Print
     escrotum -s '/home/mssun/Screenshots/%Y-%m-%d_$wx$h_escrotum.png'
