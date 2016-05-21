@@ -41,9 +41,10 @@ values."
                       auto-completion-return-key-behavior 'complete
                       auto-completion-tab-key-behavior 'cycle
                       auto-completion-enable-help-tooltip t
-                      auto-completion-enable-sort-by-usage t
-                      auto-completion-enable-snippets-in-popup t)
+                      auto-completion-enable-sort-by-usage t)
+                      ;; auto-completion-enable-snippets-in-popup t)
      better-defaults
+     bibtex
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
@@ -56,7 +57,12 @@ values."
              ;; elfeed-enable-web-interface t
              rmh-elfeed-org-files (list "~/Dropbox/org/elfeed.org"))
      emacs-lisp
-     emoji
+     (erc :variables
+          erc-server-list
+          '(("irc.gitter.im"
+             :port "6667"
+             :ssl t
+             :nick "mssun")))
      git
      github
      gtags
@@ -64,7 +70,7 @@ values."
      (latex :variables
             latex-build-command "LaTeX")
      imenu-list
-     jabber
+     ;; jabber
      markdown
      (mu4e :variables
            mu4e-enable-mode-line t
@@ -80,13 +86,13 @@ values."
      search-engine
      semantic
      shell
-     spacemacs-helm
+     helm
      spell-checking
      syntax-checking
      swift
      ;; twitter
      version-control
-     ycmd
+     ;; ycmd
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -311,6 +317,7 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
+  ;; misc
   (setq undo-tree-auto-save-history t
         undo-tree-history-directory-alist
         `(("." . ,(concat spacemacs-cache-directory "undo"))))
@@ -349,18 +356,41 @@ you should place you code here."
            ("zathura %o"
             (mode-io-correlate
              " --synctex-forward %n:0:%b -x \"emacsclient +%{line} %{input}\"")))))
-  (setq-default TeX-master "paper")
+  (setq-default TeX-master "main")
+
+  ;; markdown
+  (add-hook 'markdown-mode-hook 'turn-on-orgtbl)
+  (setq markdown-command "/usr/bin/pandoc")
 
   ;; org
+  (setq ort-directory "~/Dropbox/org")
   (setq org-agenda-files (list "~/Dropbox/org/tasks.org"))
   (setq org-bullets-bullet-list '("◉" "○" "✸" "•"))
-  (setq markdown-command "/usr/bin/pandoc")
   (setq org-file-apps '(("pdf" . "open %s")))
   (setq org-latex-listings 'minted)
   (setq org-beamer-outline-frame-options "allowframebreaks=0.9")
   ;; (setq org-beamer-frame-default-options "allowframebreaks")
   (setq org-latex-pdf-process
         '("latexmk -xelatex -latexoption=\"-shell-escape -interaction=nonstopmode -synctex=1\" -output-directory=%o %f"))
+  (require 'org-protocol)
+  (defadvice org-capture
+      (after make-full-window-frame activate)
+    "Advise capture to be the only window when used as a popup"
+    (if (equal "emacs-capture" (frame-parameter nil 'name))
+        (delete-other-windows)))
+
+  (defadvice org-capture-finalize
+      (after delete-capture-frame activate)
+    "Advise capture-finalize to close the frame"
+    (if (equal "emacs-capture" (frame-parameter nil 'name))
+        (delete-frame)))
+
+  ;; Capture Templates
+  ;; Add idea, mind-onanism, contacts, movies to download das
+  (setq org-capture-templates
+        '(("l" "Temp Links from the interwebs" item
+           (file+headline "links.org" "Temporary Links")
+           "%?\nEntered on %U\n \%i\n %a")))
 
   ;; ycmd
   (cond
@@ -431,59 +461,66 @@ you should place you code here."
   (setq message-kill-buffer-on-exit t)
 
 
-  ;; jabber
-  (setq ssl-program-name "gnutls-cli"
-        ssl-program-arguments '("--insecure" "-p" service host)
-        ssl-certificate-verification-policy 1)
-  (require 'netrc)
-  (setq cred (netrc-machine (netrc-parse "~/.authinfo.gpg") "talk.google.com"))
-  (setq jabber-account-list `((,(netrc-get cred "login")
-                               (:password . ,(netrc-get cred "password"))
-                               (:network-server . "talk.google.com")
-                               (:port . 443)
-                               (:connection-type . ssl))))
-  (setq jabber-alert-presence-message-function (lambda (who oldstatus newstatus statusnext) nil))
-  (setq jabber-roster-line-format " %c %-25n %u %-8s  %s")
-  (add-hook 'jabber-alert-message-hooks 'jabber-message-notifications)
-  (add-hook 'jabber-post-connect-hook 'jabber-autoaway-start)
-  (setq jabber-autoaway-methods (list 'jabber-xprintidle-get-idle-time))
-  (setq jabber-auto-reconnect t
-        jabber-history-enable t
-        jabber-use-global-history nil
-        jabber-backlog-number 40
-        jabber-backlog-days 30
-        jabber-show-resources 'sometimes
-        jabber-show-offline-contacts nil
-        jabber-roster-show-title nil
-        jabber-roster-show-bindings nil
-        jabber-chat-buffer-show-avatar nil
-        jabber-autoaway-timeout 5
-        jabber-autoaway-xa-timeout 10
-        jabber-roster-buffer "*-jabber-*"
-        jabber-chat-buffer-format "*-jabber-%n-*")
-  (setq jabber-roster-sort-functions (quote (jabber-roster-sort-by-status jabber-roster-sort-by-displayname jabber-roster-sort-by-group)))
-  (setq fsm-debug nil)
+  ;; ;; jabber
+  ;; (setq ssl-program-name "gnutls-cli"
+  ;;       ssl-program-arguments '("--insecure" "-p" service host)
+  ;;       ssl-certificate-verification-policy 1)
+  ;; (require 'netrc)
+  ;; (setq cred (netrc-machine (netrc-parse "~/.authinfo.gpg") "talk.google.com"))
+  ;; (setq jabber-account-list `((,(netrc-get cred "login")
+  ;;                              (:password . ,(netrc-get cred "password"))
+  ;;                              (:network-server . "talk.google.com")
+  ;;                              (:port . 443)
+  ;;                              (:connection-type . ssl))))
+  ;; (setq jabber-alert-presence-message-function (lambda (who oldstatus newstatus statusnext) nil))
+  ;; (setq jabber-roster-line-format " %c %-25n %u %-8s  %s")
+  ;; (add-hook 'jabber-alert-message-hooks 'jabber-message-notifications)
+  ;; (add-hook 'jabber-post-connect-hook 'jabber-autoaway-start)
+  ;; (setq jabber-autoaway-methods (list 'jabber-xprintidle-get-idle-time))
+  ;; (setq jabber-auto-reconnect t
+  ;;       jabber-history-enable t
+  ;;       jabber-use-global-history nil
+  ;;       jabber-backlog-number 40
+  ;;       jabber-backlog-days 30
+  ;;       jabber-show-resources 'sometimes
+  ;;       jabber-show-offline-contacts nil
+  ;;       jabber-roster-show-title nil
+  ;;       jabber-roster-show-bindings nil
+  ;;       jabber-chat-buffer-show-avatar nil
+  ;;       jabber-autoaway-timeout 5
+  ;;       jabber-autoaway-xa-timeout 10
+  ;;       jabber-roster-buffer "*-jabber-*"
+  ;;       jabber-chat-buffer-format "*-jabber-%n-*")
+  ;; (setq jabber-roster-sort-functions (quote (jabber-roster-sort-by-status jabber-roster-sort-by-displayname jabber-roster-sort-by-group)))
+  ;; (setq fsm-debug nil)
 
-  (defun jabber-font-setup ()
-    (set-face-attribute 'jabber-roster-user-online nil :foreground "#4f97d7")
-    (set-face-attribute 'jabber-roster-user-xa nil :slant 'normal :foreground "#9f8766")
-    (set-face-attribute 'jabber-roster-user-dnd nil :slant 'normal :foreground "#ce537a")
-    (set-face-attribute 'jabber-roster-user-away nil :slant 'normal :foreground "#9f8766")
-    (set-face-attribute 'jabber-roster-user-error nil :slant 'normal)
-    (set-face-attribute 'jabber-roster-user-offline nil :slant 'normal :foreground "dark grey")
+  ;; (defun jabber-font-setup ()
+  ;;   (set-face-attribute 'jabber-roster-user-online nil :foreground "#4f97d7")
+  ;;   (set-face-attribute 'jabber-roster-user-xa nil :slant 'normal :foreground "#9f8766")
+  ;;   (set-face-attribute 'jabber-roster-user-dnd nil :slant 'normal :foreground "#ce537a")
+  ;;   (set-face-attribute 'jabber-roster-user-away nil :slant 'normal :foreground "#9f8766")
+  ;;   (set-face-attribute 'jabber-roster-user-error nil :slant 'normal)
+  ;;   (set-face-attribute 'jabber-roster-user-offline nil :slant 'normal :foreground "dark grey")
 
-    (set-face-attribute 'jabber-title-small nil :inherit 'default :width 'normal :foreground "#bc6ec5" :height 'unspecified)
-    (set-face-attribute 'jabber-title-medium nil :inherit 'default :width 'normal :height 'unspecified)
-    (set-face-attribute 'jabber-title-large nil :inherit 'default :width 'normal :height 'unspecified))
+  ;;   (set-face-attribute 'jabber-title-small nil :inherit 'default :width 'normal :foreground "#bc6ec5" :height 'unspecified)
+  ;;   (set-face-attribute 'jabber-title-medium nil :inherit 'default :width 'normal :height 'unspecified)
+  ;;   (set-face-attribute 'jabber-title-large nil :inherit 'default :width 'normal :height 'unspecified))
 
-  (add-hook 'jabber-roster-mode-hook 'jabber-font-setup)
-  (add-hook 'jabber-chat-mode-hook 'flyspell-mode)
+  ;; (add-hook 'jabber-roster-mode-hook 'jabber-font-setup)
+  ;; (add-hook 'jabber-chat-mode-hook 'flyspell-mode)
+  ;; ;; (jabber-connect-all)
 
+  ;; c-c++
   (add-hook 'c++-mode-hook (lambda ()
-                             (setq flycheck-checker 'c/c++-gcc)
+                             (setq flycheck-checker 'c/c++-clang)
                              (setq flycheck-gcc-language-standard "c++11")
                              (setq flycheck-clang-language-standard "c++11")))
 
+  (global-set-key [C-M-tab] 'clang-format-region)
+  (add-hook 'c++-mode-hook 'clang-format-bindings)
+  (defun clang-format-bindings ()
+    (define-key c++-mode-map [tab] 'clang-format-buffer))
+  ;;'(safe-local-variable-values (quote ((TeX-command-extra-options . "-shell-escape")))))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
