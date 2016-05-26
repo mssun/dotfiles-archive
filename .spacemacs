@@ -70,7 +70,6 @@ values."
      (latex :variables
             latex-build-command "LaTeX")
      imenu-list
-     ;; jabber
      markdown
      (mu4e :variables
            mu4e-enable-mode-line t
@@ -99,7 +98,7 @@ values."
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '()
-   ;; A list of packages and/or extensions that will not be install and loaded.
+   ;; A list of packages that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
@@ -194,9 +193,12 @@ values."
    dotspacemacs-distinguish-gui-tab nil
    ;; If non nil `Y' is remapped to `y$' in Evil states. (default nil)
    dotspacemacs-remap-Y-to-y$ nil
+   ;; If non-nil, the shift mappings `<' and `>' retain visual state if used
+   ;; there. (default t)
+   dotspacemacs-retain-visual-state-on-shift t
    ;; If non nil, inverse the meaning of `g' in `:substitute' Evil ex-command.
    ;; (default nil)
-   dotspacemacs-ex-substitute-global t
+   dotspacemacs-ex-substitute-global nil
    ;; Name of the default layout (default "Default")
    dotspacemacs-default-layout-name "Default"
    ;; If non nil the default layout name is displayed in the mode-line.
@@ -204,7 +206,7 @@ values."
    dotspacemacs-display-default-layout nil
    ;; If non nil then the last auto saved layouts are resume automatically upon
    ;; start. (default nil)
-   dotspacemacs-auto-resume-layouts t
+   dotspacemacs-auto-resume-layouts nil
    ;; Size (in MB) above which spacemacs will prompt to open the large file
    ;; literally to avoid performance issues. Opening a file literally means that
    ;; no major mode or minor modes are active. (default is 1)
@@ -459,56 +461,6 @@ you should place you code here."
   ;; (require 'mu4e-contrib)
   ;; (setq mu4e-html2text-command 'mu4e-shr2text)
   (setq message-kill-buffer-on-exit t)
-
-
-  ;; ;; jabber
-  ;; (setq ssl-program-name "gnutls-cli"
-  ;;       ssl-program-arguments '("--insecure" "-p" service host)
-  ;;       ssl-certificate-verification-policy 1)
-  ;; (require 'netrc)
-  ;; (setq cred (netrc-machine (netrc-parse "~/.authinfo.gpg") "talk.google.com"))
-  ;; (setq jabber-account-list `((,(netrc-get cred "login")
-  ;;                              (:password . ,(netrc-get cred "password"))
-  ;;                              (:network-server . "talk.google.com")
-  ;;                              (:port . 443)
-  ;;                              (:connection-type . ssl))))
-  ;; (setq jabber-alert-presence-message-function (lambda (who oldstatus newstatus statusnext) nil))
-  ;; (setq jabber-roster-line-format " %c %-25n %u %-8s  %s")
-  ;; (add-hook 'jabber-alert-message-hooks 'jabber-message-notifications)
-  ;; (add-hook 'jabber-post-connect-hook 'jabber-autoaway-start)
-  ;; (setq jabber-autoaway-methods (list 'jabber-xprintidle-get-idle-time))
-  ;; (setq jabber-auto-reconnect t
-  ;;       jabber-history-enable t
-  ;;       jabber-use-global-history nil
-  ;;       jabber-backlog-number 40
-  ;;       jabber-backlog-days 30
-  ;;       jabber-show-resources 'sometimes
-  ;;       jabber-show-offline-contacts nil
-  ;;       jabber-roster-show-title nil
-  ;;       jabber-roster-show-bindings nil
-  ;;       jabber-chat-buffer-show-avatar nil
-  ;;       jabber-autoaway-timeout 5
-  ;;       jabber-autoaway-xa-timeout 10
-  ;;       jabber-roster-buffer "*-jabber-*"
-  ;;       jabber-chat-buffer-format "*-jabber-%n-*")
-  ;; (setq jabber-roster-sort-functions (quote (jabber-roster-sort-by-status jabber-roster-sort-by-displayname jabber-roster-sort-by-group)))
-  ;; (setq fsm-debug nil)
-
-  ;; (defun jabber-font-setup ()
-  ;;   (set-face-attribute 'jabber-roster-user-online nil :foreground "#4f97d7")
-  ;;   (set-face-attribute 'jabber-roster-user-xa nil :slant 'normal :foreground "#9f8766")
-  ;;   (set-face-attribute 'jabber-roster-user-dnd nil :slant 'normal :foreground "#ce537a")
-  ;;   (set-face-attribute 'jabber-roster-user-away nil :slant 'normal :foreground "#9f8766")
-  ;;   (set-face-attribute 'jabber-roster-user-error nil :slant 'normal)
-  ;;   (set-face-attribute 'jabber-roster-user-offline nil :slant 'normal :foreground "dark grey")
-
-  ;;   (set-face-attribute 'jabber-title-small nil :inherit 'default :width 'normal :foreground "#bc6ec5" :height 'unspecified)
-  ;;   (set-face-attribute 'jabber-title-medium nil :inherit 'default :width 'normal :height 'unspecified)
-  ;;   (set-face-attribute 'jabber-title-large nil :inherit 'default :width 'normal :height 'unspecified))
-
-  ;; (add-hook 'jabber-roster-mode-hook 'jabber-font-setup)
-  ;; (add-hook 'jabber-chat-mode-hook 'flyspell-mode)
-  ;; ;; (jabber-connect-all)
 
   ;; c-c++
   (add-hook 'c++-mode-hook (lambda ()
