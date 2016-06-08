@@ -58,7 +58,7 @@ trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 mkfifo "$PANEL_FIFO"
 
 bspc config top_padding $PANEL_HEIGHT
-bspc control --subscribe > "$PANEL_FIFO" &
+bspc subscribe > "$PANEL_FIFO" &
 
 # Here are the subprograms that add information to the status FIFO which are
 # interpreted by panel_bar, below. Each output is detected by its first
