@@ -40,6 +40,8 @@ values."
      (auto-completion :variables
                       auto-completion-return-key-behavior 'complete
                       auto-completion-tab-key-behavior 'cycle
+                      auto-completion-complete-with-key-sequence nil
+                      auto-completion-complete-with-key-sequence-delay 0.1
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-sort-by-usage t)
                       ;; auto-completion-enable-snippets-in-popup t)
@@ -48,7 +50,7 @@ values."
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
-     chinese
+     ;; chinese
      chrome
      colors
      dash
@@ -71,10 +73,10 @@ values."
             latex-build-command "LaTeX")
      imenu-list
      markdown
-     (mu4e :variables
-           mu4e-enable-mode-line t
-           mu4e-enable-notifications t
-           mu4e-installation-path "/usr/share/emacs/site-lisp")
+     ;; (mu4e :variables
+     ;;       mu4e-enable-mode-line t
+     ;;       mu4e-enable-notifications t
+     ;;       mu4e-installation-path "/usr/share/emacs/site-lisp")
      org
      osx
      pdf-tools
@@ -330,15 +332,15 @@ you should place you code here."
           browse-url-generic-program "google-chrome-stable"))
   (setq vc-follow-symlinks t)
   (setq ad-redefinition-action 'accept)
-  (if (display-graphic-p)
-      (progn
-        (cond
-         ((spacemacs/system-is-mac)
-          (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 15 16))
-         ((spacemacs/system-is-linux)
-          (spacemacs//set-monospaced-font "Source Code Pro" "Source Han Sans CN" 15 16)))
-        (set-fontset-font (frame-parameter nil 'font) 'symbol
-                          (font-spec :family "Input Mono"))))
+  ;; (if (display-graphic-p)
+  ;;     (progn
+  ;;       (cond
+  ;;        ((spacemacs/system-is-mac)
+  ;;         (spacemacs//set-monospaced-font "Source Code Pro" "Hiragino Sans GB" 15 16))
+  ;;        ((spacemacs/system-is-linux)
+  ;;         (spacemacs//set-monospaced-font "Source Code Pro" "Source Han Sans CN" 15 16)))
+  ;;       (set-fontset-font (frame-parameter nil 'font) 'symbol
+  ;;                         (font-spec :family "Input Mono"))))
 
   ;; latex
   (setq TeX-source-correlate-mode t
@@ -403,64 +405,64 @@ you should place you code here."
   (setq ycmd-request-message-level -1)
 
   ;; auto-completion
-  (setq company-idle-delay 0)
+  ;; (setq company-idle-delay 0)
   ;; (setq ac-delay 0)
 
   ;; deft
   (setq deft-directory "~/Dropbox/notes")
 
-  ;; mu4e
-  (setq mu4e-maildir "~/.mail/gmail"
-        mu4e-sent-folder "/sent"
-        mu4e-drafts-folder "/drafts"
-        mu4e-trash-folder "/trash"
-        mu4e-refile-folder "/archive"
-        mu4e-sent-messages-behavior 'delete
-        user-mail-address "mssun@cse.cuhk.edu.hk"
-        user-full-name  "Mingshen Sun"
-        mu4e-compose-signature
-        (concat
-         "Best,\n"
-         "Mingshen\n"))
-  (setq mu4e-show-images t
-        mu4e-view-show-images t
-        mu4e-headers-attach-mark '("a" . "")
-        mu4e-headers-seen-mark  '("S" . "✔")
-        mu4e-headers-passed-mark  '("P" . "→")
-        mu4e-headers-replied-mark '("R" . "←")
-        mu4e-headers-encrypted-mark '("x" . "⚷")
-        mu4e-headers-default-prefix   '("|" . "┃")
-        mu4e-headers-first-child-prefix  '("\\" . "↳")
-        mu4e-use-fancy-chars nil
-        mu4e-get-mail-command "offlineimap"
-        mu4e-update-interval 30)
-  (when (fboundp 'imagemagick-register-types)
-    (imagemagick-register-types))
+  ;; ;; mu4e
+  ;; (setq mu4e-maildir "~/.mail/gmail"
+  ;;       mu4e-sent-folder "/sent"
+  ;;       mu4e-drafts-folder "/drafts"
+  ;;       mu4e-trash-folder "/trash"
+  ;;       mu4e-refile-folder "/archive"
+  ;;       mu4e-sent-messages-behavior 'delete
+  ;;       user-mail-address "mssun@cse.cuhk.edu.hk"
+  ;;       user-full-name  "Mingshen Sun"
+  ;;       mu4e-compose-signature
+  ;;       (concat
+  ;;        "Best,\n"
+  ;;        "Mingshen\n"))
+  ;; (setq mu4e-show-images t
+  ;;       mu4e-view-show-images t
+  ;;       mu4e-headers-attach-mark '("a" . "")
+  ;;       mu4e-headers-seen-mark  '("S" . "✔")
+  ;;       mu4e-headers-passed-mark  '("P" . "→")
+  ;;       mu4e-headers-replied-mark '("R" . "←")
+  ;;       mu4e-headers-encrypted-mark '("x" . "⚷")
+  ;;       mu4e-headers-default-prefix   '("|" . "┃")
+  ;;       mu4e-headers-first-child-prefix  '("\\" . "↳")
+  ;;       mu4e-use-fancy-chars nil
+  ;;       mu4e-get-mail-command "offlineimap"
+  ;;       mu4e-update-interval 30)
+  ;; (when (fboundp 'imagemagick-register-types)
+  ;;   (imagemagick-register-types))
 
-  (setq message-send-mail-function 'smtpmail-send-it
-        starttls-use-gnutls t
-        smtpmail-stream-type 'starttls
-        smtpmail-default-smtp-server "smtp.gmail.com"
-        smtpmail-smtp-server "smtp.gmail.com"
-        smtpmail-smtp-service 587
-        smtpmail-auth-credentials (expand-file-name "~/.authinfo.gpg"))
-  (setq mu4e-hide-index-messages t)
-  (with-eval-after-load 'mu4e-alert
-    ;; (mu4e-alert-set-default-style 'notifications)) ; For linux
-    (mu4e-alert-set-default-style 'libnotify))  ; Alternative for linux
-    ;; (mu4e-alert-set-default-style 'notifier))   ; For Mac OSX (through the
-	    ; terminal notifier app)
-    ;; (mu4e-alert-set-default-style 'growl))      ; Alternative for Mac OSX
-  (setq mu4e-alert-interesting-mail-query
-        (concat
-         "flag:unread"
-         " AND NOT flag:trashed"
-         " AND maildir:"
-         "\"/INBOX\""))
-  (setq mu4e-html2text-command "w3m -dump -cols 110 -T text/html")
-  ;; (require 'mu4e-contrib)
-  ;; (setq mu4e-html2text-command 'mu4e-shr2text)
-  (setq message-kill-buffer-on-exit t)
+  ;; (setq message-send-mail-function 'smtpmail-send-it
+  ;;       starttls-use-gnutls t
+  ;;       smtpmail-stream-type 'starttls
+  ;;       smtpmail-default-smtp-server "smtp.gmail.com"
+  ;;       smtpmail-smtp-server "smtp.gmail.com"
+  ;;       smtpmail-smtp-service 587
+  ;;       smtpmail-auth-credentials (expand-file-name "~/.authinfo.gpg"))
+  ;; (setq mu4e-hide-index-messages t)
+  ;; (with-eval-after-load 'mu4e-alert
+  ;;   ;; (mu4e-alert-set-default-style 'notifications)) ; For linux
+  ;;   (mu4e-alert-set-default-style 'libnotify))  ; Alternative for linux
+  ;;   ;; (mu4e-alert-set-default-style 'notifier))   ; For Mac OSX (through the
+	;;     ; terminal notifier app)
+  ;;   ;; (mu4e-alert-set-default-style 'growl))      ; Alternative for Mac OSX
+  ;; (setq mu4e-alert-interesting-mail-query
+  ;;       (concat
+  ;;        "flag:unread"
+  ;;        " AND NOT flag:trashed"
+  ;;        " AND maildir:"
+  ;;        "\"/INBOX\""))
+  ;; (setq mu4e-html2text-command "w3m -dump -cols 110 -T text/html")
+  ;; ;; (require 'mu4e-contrib)
+  ;; ;; (setq mu4e-html2text-command 'mu4e-shr2text)
+  ;; (setq message-kill-buffer-on-exit t)
 
   ;; c-c++
   (add-hook 'c++-mode-hook (lambda ()
