@@ -16,7 +16,7 @@ xset r rate 400 70
 xsetroot -cursor_name left_ptr &
 
 dunst -config ~/.config/dunst/dunstrc &
-sxhkd &
+sxhkd -c ~/.config/sxhkd/sxhkdrc &
 dropbox-cli start &
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
